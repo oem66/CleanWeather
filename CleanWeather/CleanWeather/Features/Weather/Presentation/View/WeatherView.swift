@@ -9,9 +9,14 @@ import SwiftUI
 import CoreData
 
 struct WeatherView: View {
+    @StateObject private var viewModel = WeatherViewModel()
+    
     var body: some View {
         VStack {
             Text("Weather View")
+        }
+        .onAppear {
+            viewModel.getUserLocation()
         }
     }
 }

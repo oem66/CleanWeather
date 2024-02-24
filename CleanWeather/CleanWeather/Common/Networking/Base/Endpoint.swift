@@ -21,12 +21,4 @@ extension Endpoint {
     var scheme: String {
         return "https"
     }
-
-//    var host: String {
-//        return "api.themoviedb.org"
-//    }
-    
-    var postmanHost: String {
-        return "postman-echo.com"
-    }
 }
