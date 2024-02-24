@@ -8,5 +8,15 @@
 import Foundation
 
 final class WeatherViewModel: ObservableObject {
+    private let useCase: WeatherUseCaseProtocol
     
+    init(useCase: WeatherUseCaseProtocol = WeatherUseCase()) {
+        self.useCase = useCase
+    }
+}
+
+extension WeatherViewModel {
+    func getAll() {
+        useCase.getWeather()
+    }
 }
