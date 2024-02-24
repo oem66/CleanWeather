@@ -16,6 +16,10 @@
 		3E8978C22B89F1E10061D83F /* CleanWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8978C12B89F1E10061D83F /* CleanWeatherTests.swift */; };
 		3E8978CC2B89F1E10061D83F /* CleanWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8978CB2B89F1E10061D83F /* CleanWeatherUITests.swift */; };
 		3E8978CE2B89F1E10061D83F /* CleanWeatherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8978CD2B89F1E10061D83F /* CleanWeatherUITestsLaunchTests.swift */; };
+		3E8978E22B8A2FE00061D83F /* Managed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8978E12B8A2FE00061D83F /* Managed.swift */; };
+		3E8978E42B8A2FF60061D83F /* NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8978E32B8A2FF60061D83F /* NSManagedObjectContext.swift */; };
+		3E8978E62B8A300A0061D83F /* DataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8978E52B8A300A0061D83F /* DataModelProtocol.swift */; };
+		3E8978E82B8A30210061D83F /* DomainModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8978E72B8A30210061D83F /* DomainModelProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		3E8978C72B89F1E10061D83F /* CleanWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E8978CB2B89F1E10061D83F /* CleanWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanWeatherUITests.swift; sourceTree = "<group>"; };
 		3E8978CD2B89F1E10061D83F /* CleanWeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanWeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3E8978E12B8A2FE00061D83F /* Managed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managed.swift; sourceTree = "<group>"; };
+		3E8978E32B8A2FF60061D83F /* NSManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContext.swift; sourceTree = "<group>"; };
+		3E8978E52B8A300A0061D83F /* DataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelProtocol.swift; sourceTree = "<group>"; };
+		3E8978E72B8A30210061D83F /* DomainModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainModelProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +110,11 @@
 				3E8978AA2B89F1DF0061D83F /* CleanWeatherApp.swift */,
 				3E8978AC2B89F1DF0061D83F /* Persistence.swift */,
 				3E8978B12B89F1DF0061D83F /* ContentView.swift */,
-				3E8978B32B89F1E00061D83F /* Assets.xcassets */,
 				3E8978B52B89F1E00061D83F /* CleanWeather.entitlements */,
-				3E8978AE2B89F1DF0061D83F /* CleanWeather.xcdatamodeld */,
+				3E8978DA2B89F66F0061D83F /* Common */,
+				3E8978DB2B89F67A0061D83F /* Features */,
+				3E8978DC2B89F67F0061D83F /* Supporting Files */,
+				3E8978DD2B89F68D0061D83F /* Utilities */,
 				3E8978B62B89F1E00061D83F /* Preview Content */,
 			);
 			path = CleanWeather;
@@ -133,6 +143,64 @@
 				3E8978CD2B89F1E10061D83F /* CleanWeatherUITestsLaunchTests.swift */,
 			);
 			path = CleanWeatherUITests;
+			sourceTree = "<group>";
+		};
+		3E8978DA2B89F66F0061D83F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3E8978DE2B8A26320061D83F /* Extension */,
+				3E8978DF2B8A26410061D83F /* Networking */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3E8978DB2B89F67A0061D83F /* Features */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		3E8978DC2B89F67F0061D83F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3E8978B32B89F1E00061D83F /* Assets.xcassets */,
+				3E8978AE2B89F1DF0061D83F /* CleanWeather.xcdatamodeld */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3E8978DD2B89F68D0061D83F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3E8978E02B8A2FC10061D83F /* Data */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3E8978DE2B8A26320061D83F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		3E8978DF2B8A26410061D83F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		3E8978E02B8A2FC10061D83F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3E8978E12B8A2FE00061D83F /* Managed.swift */,
+				3E8978E32B8A2FF60061D83F /* NSManagedObjectContext.swift */,
+				3E8978E52B8A300A0061D83F /* DataModelProtocol.swift */,
+				3E8978E72B8A30210061D83F /* DomainModelProtocol.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,9 +334,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E8978B02B89F1DF0061D83F /* CleanWeather.xcdatamodeld in Sources */,
+				3E8978E42B8A2FF60061D83F /* NSManagedObjectContext.swift in Sources */,
 				3E8978AB2B89F1DF0061D83F /* CleanWeatherApp.swift in Sources */,
+				3E8978E62B8A300A0061D83F /* DataModelProtocol.swift in Sources */,
 				3E8978B22B89F1DF0061D83F /* ContentView.swift in Sources */,
 				3E8978AD2B89F1DF0061D83F /* Persistence.swift in Sources */,
+				3E8978E22B8A2FE00061D83F /* Managed.swift in Sources */,
+				3E8978E82B8A30210061D83F /* DomainModelProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +497,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CleanWeather/CleanWeather.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CleanWeather/Preview Content\"";
@@ -463,6 +536,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CleanWeather/CleanWeather.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CleanWeather/Preview Content\"";
