@@ -11,6 +11,7 @@ import WeatherKit
 
 final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var weatherData = WeatherData()
+    @Published var location = CLLocation()
     
     private let useCase: WeatherUseCaseProtocol
     
@@ -21,14 +22,21 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
         self.useCase = useCase
     }
     
-    private func getWeather(location: CLLocation) {
+    func getWeather(location: CLLocation) async {
         Task {
-            weatherData = await useCase.getWeather(location: location)
-            debugPrint("Apple Weather Data: \(String(describing: weatherData.currentWeather))")
+            let data = await useCase.getWeather(location: location)
+            assignValueToWeather(data: data)
         }
     }
     
-    func getUserLocation() {
+    private func assignValueToWeather(data: WeatherData) {
+        DispatchQueue.main.async {
+            self.weatherData = data
+            debugPrint("View Model Data: \(self.weatherData.currentWeather)")
+        }
+    }
+    
+    func getUserLocation() async {
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
@@ -40,7 +48,6 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
         }
         locationManager.stopUpdatingLocation()
         
-        // MARK: - Get data from Apple Weather API
-        getWeather(location: location)
+        self.location = location
     }
 }

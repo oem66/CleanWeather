@@ -16,7 +16,10 @@ struct WeatherView: View {
             Text("Weather View")
         }
         .onAppear {
-            viewModel.getUserLocation()
+            Task {
+                await viewModel.getUserLocation()
+                await viewModel.getWeather(location: viewModel.location)
+            }
         }
     }
 }

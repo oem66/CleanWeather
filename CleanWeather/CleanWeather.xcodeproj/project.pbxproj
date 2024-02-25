@@ -266,8 +266,8 @@
 		3E8978F82B8A341A0061D83F /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				3E8978FD2B8A344C0061D83F /* Data */,
 				3E8978FE2B8A34520061D83F /* Domain */,
+				3E8978FD2B8A344C0061D83F /* Data */,
 				3E8978FF2B8A345B0061D83F /* Presentation */,
 			);
 			path = Weather;
