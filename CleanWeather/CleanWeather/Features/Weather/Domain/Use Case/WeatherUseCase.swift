@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import CoreLocation
 
 final class WeatherUseCase: WeatherUseCaseProtocol {
     private lazy var repository = WeatherRepository()
     
-    func getWeather() {
-        repository.getWeather()
+    func getWeather(location: CLLocation) async -> WeatherData {
+        debugPrint("Use Case")
+        return await repository.getWeather(location: location)
     }
 }

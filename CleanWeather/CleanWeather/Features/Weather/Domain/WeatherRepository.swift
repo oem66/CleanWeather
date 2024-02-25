@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import CoreLocation
+import Combine
 
 final class WeatherRepository: WeatherRepositoryProtocol {
     private lazy var remoteRepository = WeatherRemoteRepository()
     
-    func getWeather() {
-//        remoteRepository.getWeather()
+    func getWeather(location: CLLocation) async -> WeatherData {
+        debugPrint("Repository")
+        return await remoteRepository.getWeather(location: location)
     }
 }

@@ -6,18 +6,19 @@
 //
 
 import Foundation
+import CoreLocation
+import Combine
 
 final class WeatherRemoteRepository {
     
-//    let network: WeatherServiceProtocol!
+    let network: AppleWeatherServiceProtocol!
     
-//    init(network: WeatherServiceProtocol = WeatherService()) {
-//        self.network = network
-//    }
-//    
-//    func getWeather() {
-//        Task {
-//            await network.getWeather(model: WeatherRequestModel())
-//        }
-//    }
+    init(network: AppleWeatherServiceProtocol = AppleWeatherService()) {
+        self.network = network
+    }
+    
+    func getWeather(location: CLLocation) async -> WeatherData {
+        debugPrint("Remote Repository")
+        return network.getAppleWeather(location: location)
+    }
 }

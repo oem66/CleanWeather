@@ -10,6 +10,8 @@ import CoreLocation
 import WeatherKit
 
 final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    @Published var weatherData = WeatherData()
+    
     private let useCase: WeatherUseCaseProtocol
     
     private let locationManager = CLLocationManager()
@@ -21,16 +23,8 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     
     private func getWeather(location: CLLocation) {
         Task {
-            do {
-                let result = try await weatherService.weather(for: location)
-                debugPrint("Curent: \(result.currentWeather)")
-                debugPrint("Daily: \(result.dailyForecast)")
-                debugPrint("Weather Alerts: \(result.weatherAlerts)")
-                debugPrint("Weather Minutely: \(result.minuteForecast)")
-                debugPrint("Weather pressu: \(result.currentWeather.pressure)")
-            } catch {
-                debugPrint("Error occured while fetching Weather data. \(error.localizedDescription)")
-            }
+            weatherData = await useCase.getWeather(location: location)
+            debugPrint("Apple Weather Data: \(String(describing: weatherData.currentWeather))")
         }
     }
     
@@ -49,10 +43,4 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
         // MARK: - Get data from Apple Weather API
         getWeather(location: location)
     }
-}
-
-extension WeatherViewModel {
-//    func getAll() {
-//        useCase.getWeather()
-//    }
 }
