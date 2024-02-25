@@ -11,6 +11,6 @@ final class WeatherRepository: WeatherRepositoryProtocol {
     private lazy var remoteRepository = WeatherRemoteRepository()
     
     func getWeather() {
-        remoteRepository.getWeather()
+//        remoteRepository.getWeather()
     }
 }

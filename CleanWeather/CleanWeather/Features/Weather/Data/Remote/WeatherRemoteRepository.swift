@@ -9,13 +9,15 @@ import Foundation
 
 final class WeatherRemoteRepository {
     
-    let network: WeatherServiceProtocol!
+//    let network: WeatherServiceProtocol!
     
-    init(network: WeatherServiceProtocol = WeatherService()) {
-        self.network = network
-    }
-    
-    func getWeather() {
-        
-    }
+//    init(network: WeatherServiceProtocol = WeatherService()) {
+//        self.network = network
+//    }
+//    
+//    func getWeather() {
+//        Task {
+//            await network.getWeather(model: WeatherRequestModel())
+//        }
+//    }
 }

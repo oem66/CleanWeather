@@ -6,17 +6,53 @@
 //
 
 import Foundation
+import CoreLocation
+import WeatherKit
 
-final class WeatherViewModel: ObservableObject {
+final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let useCase: WeatherUseCaseProtocol
+    
+    private let locationManager = CLLocationManager()
+    private let weatherService = WeatherService()
     
     init(useCase: WeatherUseCaseProtocol = WeatherUseCase()) {
         self.useCase = useCase
     }
+    
+    private func getWeather(location: CLLocation) {
+        Task {
+            do {
+                let result = try await weatherService.weather(for: location)
+                debugPrint("Curent: \(result.currentWeather)")
+                debugPrint("Daily: \(result.dailyForecast)")
+                debugPrint("Weather Alerts: \(result.weatherAlerts)")
+                debugPrint("Weather Minutely: \(result.minuteForecast)")
+                debugPrint("Weather pressu: \(result.currentWeather.pressure)")
+            } catch {
+                debugPrint("Error occured while fetching Weather data. \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func getUserLocation() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {
+            return
+        }
+        locationManager.stopUpdatingLocation()
+        
+        // MARK: - Get data from Apple Weather API
+        getWeather(location: location)
+    }
 }
 
 extension WeatherViewModel {
-    func getAll() {
-        useCase.getWeather()
-    }
+//    func getAll() {
+//        useCase.getWeather()
+//    }
 }
