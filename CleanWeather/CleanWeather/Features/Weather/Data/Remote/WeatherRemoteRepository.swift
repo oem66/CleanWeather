@@ -19,6 +19,6 @@ final class WeatherRemoteRepository {
     
     func getWeather(location: CLLocation) async -> WeatherData {
         debugPrint("Remote Repository")
-        return network.getAppleWeather(location: location)
+        return await network.getAppleWeather(location: location)
     }
 }
