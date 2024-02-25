@@ -47,7 +47,6 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
             return
         }
         locationManager.stopUpdatingLocation()
-        
         self.location = location
     }
 }
