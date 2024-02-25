@@ -6,13 +6,20 @@
 //
 
 import Foundation
+import Combine
+import CoreLocation
+import WeatherKit
 
-//protocol WeatherServiceProtocol {
-//    func getWeather(model: WeatherRequestModel) async -> Result<WeatherData, RequestError>
-//}
+protocol AppleWeatherServiceProtocol {
+    func getWeather() -> AnyPublisher<WeatherData, Error>
+}
 
-//final class WeatherService: HTTPClient, WeatherServiceProtocol {
-//    func getWeather(model: WeatherRequestModel) async -> Result<WeatherData, RequestError> {
-//        return await sendRequest(endpoint: WeatherEndpoint.getWeather(model), responseModel: WeatherData.self)
-//    }
-//}
+final class AppleWeatherService: HTTPClient, AppleWeatherServiceProtocol {
+    func getWeather() -> AnyPublisher<WeatherData, Error> {
+        let weatherData = Future<WeatherData, Error> { promise in
+            
+        }
+        .eraseToAnyPublisher()
+        return weatherData
+    }
+}
