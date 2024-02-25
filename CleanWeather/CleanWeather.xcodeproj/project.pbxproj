@@ -89,6 +89,7 @@
 		3E8979162B8A45CE0061D83F /* WeatherUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUseCaseProtocol.swift; sourceTree = "<group>"; };
 		3E8979182B8A520B0061D83F /* WeatherRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRequestModel.swift; sourceTree = "<group>"; };
 		3E89791A2B8A59160061D83F /* WeatherEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherEndpoint.swift; sourceTree = "<group>"; };
+		3EEB57D82B8B43B9003879F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +140,7 @@
 		3E8978A92B89F1DF0061D83F /* CleanWeather */ = {
 			isa = PBXGroup;
 			children = (
+				3EEB57D82B8B43B9003879F2 /* Info.plist */,
 				3E8978AA2B89F1DF0061D83F /* CleanWeatherApp.swift */,
 				3E8978AC2B89F1DF0061D83F /* Persistence.swift */,
 				3E8978B52B89F1E00061D83F /* CleanWeather.entitlements */,
@@ -689,6 +691,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CleanWeather/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WeatherNow;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Clean Weather wants your location to be able to fetch weather data.";
@@ -730,6 +733,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CleanWeather/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WeatherNow;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Clean Weather wants your location to be able to fetch weather data.";
