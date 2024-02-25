@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol WeatherRepositoryProtocol {
-    func getWeather()
+    func getWeather(location: CLLocation) async -> WeatherData
 }
