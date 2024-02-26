@@ -28,19 +28,19 @@ struct StatisticsView: View {
             Group {
                 LazyVGrid(columns: columns, spacing: 20) {
                     StatisticCard("AQI", nil, 30)
-                    StatisticCard("UV Index", nil, 3)
+                    StatisticCard("UV Index", nil, viewModel.weatherData.currentWeather?.uvIndex)
                 }
                 LazyVGrid(columns: columns, spacing: 20) {
-                    StatisticCard("Pressure", 1009.3, nil)
-                    StatisticCard("Humidity", nil, 85)
+                    StatisticCard("Pressure", viewModel.weatherData.currentWeather?.pressure, nil)
+                    StatisticCard("Humidity", viewModel.weatherData.currentWeather?.humidity, nil)
                 }
                 LazyVGrid(columns: columns, spacing: 20) {
-                    StatisticCard("Feels Like", 18.5, nil)
-                    StatisticCard("Visibility", nil, 3860)
+                    StatisticCard("Feels Like", viewModel.weatherData.currentWeather?.temperatureApparent, nil)
+                    StatisticCard("Visibility", viewModel.weatherData.currentWeather?.visibility, nil)
                 }
                 LazyVGrid(columns: columns, spacing: 20) {
-                    StatisticCard("Wind Speed", 18.5, nil)
-                    StatisticCard("Wind Gust", 35.8, nil)
+                    StatisticCard("Wind Speed", viewModel.weatherData.currentWeather?.windSpeed, nil)
+                    StatisticCard("Wind Gust", viewModel.weatherData.currentWeather?.windGust, nil)
                 }
             }
             .padding(.horizontal, 20)

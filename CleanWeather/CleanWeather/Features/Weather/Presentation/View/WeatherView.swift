@@ -23,8 +23,8 @@ struct WeatherView: View {
         }
         .onAppear {
             Task {
-                //                await viewModel.getUserLocation()
-                //                await viewModel.getWeather(location: viewModel.location)
+                await viewModel.getUserLocation()
+                await viewModel.getWeather(location: viewModel.location)
             }
         }
     }

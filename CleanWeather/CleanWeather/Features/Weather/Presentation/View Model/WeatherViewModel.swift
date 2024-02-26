@@ -32,7 +32,6 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     private func assignValueToWeather(data: WeatherData) {
         DispatchQueue.main.async {
             self.weatherData = data
-            debugPrint("View Model Data: \(self.weatherData.currentWeather)")
         }
     }
     
