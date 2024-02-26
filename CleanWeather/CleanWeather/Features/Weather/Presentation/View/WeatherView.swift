@@ -15,9 +15,10 @@ struct WeatherView: View {
         VStack {
             // MARK: place ads here
             
-            ScrollView(.vertical) {
+            ScrollView(.vertical, showsIndicators: false) {
                 TemperatureView(viewModel: viewModel)
                 HourlyForecastView(viewModel: viewModel)
+                ConditionView(viewModel: viewModel)
             }
         }
         .onAppear {
