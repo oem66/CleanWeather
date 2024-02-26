@@ -18,7 +18,7 @@ struct WeatherView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 TemperatureView(viewModel: viewModel)
                 HourlyForecastView(viewModel: viewModel)
-                ConditionView(viewModel: viewModel)
+                StatisticsView(viewModel: viewModel)
             }
         }
         .onAppear {

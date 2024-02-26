@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HourlyForecastView: View {
     @ObservedObject var viewModel: WeatherViewModel
-    @State private var hours = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
+    @State private var hours = [0,1,2,3,4,5,6,7,8,9,10,11,12]
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -23,14 +23,14 @@ struct HourlyForecastView: View {
                         Text("15°")
                             .font(.custom("Avenir-Medium", size: 20))
                             .fontWeight(.bold)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                         Text("\(hour) h")
                             .font(.custom("Avenir-Medium", size: 20))
                             .fontWeight(.bold)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                     }
                     .padding(10)
-                    .background(Color(red: 0.96, green: 0.96, blue: 0.96))
+                    .background(Color(red: 45/255, green: 52/255, blue: 54/255))
                     .cornerRadius(15)
                 }
             }
