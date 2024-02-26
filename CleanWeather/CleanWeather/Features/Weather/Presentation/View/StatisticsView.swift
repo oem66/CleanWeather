@@ -19,6 +19,12 @@ struct StatisticsView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
+            Text("Statistics")
+                .font(.custom("Avenir-Medium", size: 25))
+                .fontWeight(.heavy)
+                .foregroundColor(.black)
+                .padding(.bottom, 15)
+                .padding(.leading, 15)
             Group {
                 LazyVGrid(columns: columns, spacing: 20) {
                     StatisticCard("AQI", nil, 30)
@@ -39,6 +45,7 @@ struct StatisticsView: View {
             }
             .padding(.horizontal, 20)
         }
+        .padding(.top, 20)
     }
     
     @ViewBuilder
