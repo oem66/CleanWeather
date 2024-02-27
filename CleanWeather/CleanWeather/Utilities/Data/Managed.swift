@@ -25,7 +25,7 @@ extension Managed where Self: NSManagedObject {
             let results = try context.fetch(request)
             return results
         } catch {
-           debugPrint("Error while fetching results: \(error.localizedDescription)")
+            log.error("Error while fetching results: \(error.localizedDescription)")
         }
         return []
     }

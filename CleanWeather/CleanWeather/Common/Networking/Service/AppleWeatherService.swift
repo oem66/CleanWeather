@@ -34,10 +34,10 @@ final class AppleWeatherService: AppleWeatherServiceProtocol {
                                                                          windDirection: Int(result.currentWeather.wind.direction.value),
                                                                          windGust: result.currentWeather.wind.gust?.value ?? 0.0,
                                                                          windSpeed: result.currentWeather.wind.speed.value))
-            debugPrint("Service Weather data \(weatherData)")
+            log.info("Service Weather data \(weatherData)")
             return weatherData
         } catch {
-            debugPrint("Error occured while fetching Weather data. \(error.localizedDescription)")
+            log.error("Error occured while fetching Weather data. \(error.localizedDescription)")
             return WeatherData()
         }
     }

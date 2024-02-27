@@ -12,6 +12,7 @@ import WeatherKit
 final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var weatherData = WeatherData()
     @Published var location = CLLocation()
+    @Published var placemark = ""
     
     private let useCase: WeatherUseCaseProtocol
     
@@ -47,5 +48,15 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
         }
         locationManager.stopUpdatingLocation()
         self.location = location
+        
+        locationManager.getPlace(for: location) { [weak self] place in
+            guard let self else { return }
+            log.verbose("Country: \(String(describing: place?.country))")
+            log.verbose("City: \(String(describing: place?.locality))")
+            if let country = place?.country,
+               let city = place?.locality {
+                self.placemark = "📍\(city)"
+            }
+        }
     }
 }
