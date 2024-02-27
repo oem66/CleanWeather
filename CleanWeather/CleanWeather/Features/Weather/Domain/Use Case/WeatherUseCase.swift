@@ -12,7 +12,7 @@ final class WeatherUseCase: WeatherUseCaseProtocol {
     private lazy var repository = WeatherRepository()
     
     func getWeather(location: CLLocation) async -> WeatherData {
-        debugPrint("Use Case")
+        log.info("Use Case")
         return await repository.getWeather(location: location)
     }
 }

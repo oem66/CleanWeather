@@ -9,12 +9,11 @@ import SwiftUI
 
 @main
 struct CleanWeatherApp: App {
-//    let persistenceController = PersistenceController.shared
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {
         WindowGroup {
             WeatherView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

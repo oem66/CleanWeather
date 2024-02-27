@@ -22,7 +22,7 @@ extension NSManagedObjectContext {
             return true
         } catch let error {
             rollback()
-            debugPrint("SaveOrRollback error: \(String(describing: error.localizedDescription))")
+            log.error("SaveOrRollback error: \(String(describing: error.localizedDescription))")
             return false
         }
     }

@@ -31,11 +31,11 @@ extension HTTPClient {
         request.allHTTPHeaderFields = endpoint.header
         
         if let body = endpoint.body {
-            debugPrint("Body:", body)
+            log.info("Body: \(body)")
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
             } catch let error {
-                debugPrint("Error while parsing body into JSON!", error)
+                log.error("Error while parsing body into JSON! \(error)")
             }
         }
         
@@ -47,10 +47,10 @@ extension HTTPClient {
             
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    debugPrint("JSON:", json)
+                    log.info("JSON: \(json)")
                 }
             } catch let error {
-                debugPrint("Whoops, we cound not parse that data into JSON!", error)
+                log.error("Whoops, we cound not parse that data into JSON! \(error)")
             }
             
             switch response.statusCode {
@@ -58,7 +58,7 @@ extension HTTPClient {
                 guard let decodedResponse = try? JSONDecoder().decode(responseModel, from: data) else {
                     return .failure(.decode)
                 }
-                debugPrint("Response data:", decodedResponse)
+                log.info("Response data: \(decodedResponse)")
                 return .success(decodedResponse)
             case 300:
                 return .failure(.multipleChoices)

@@ -40,6 +40,7 @@
 		3E8979152B8A45C60061D83F /* WeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8979142B8A45C60061D83F /* WeatherUseCase.swift */; };
 		3E8979172B8A45CE0061D83F /* WeatherUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8979162B8A45CE0061D83F /* WeatherUseCaseProtocol.swift */; };
 		3EE8910C2B8E6136009DD07D /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 3EE8910B2B8E6136009DD07D /* SwiftyBeaver */; };
+		3EE8910F2B8E61BE009DD07D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE8910E2B8E61BE009DD07D /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		3E8979122B8A45A10061D83F /* WeatherRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRepositoryProtocol.swift; sourceTree = "<group>"; };
 		3E8979142B8A45C60061D83F /* WeatherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUseCase.swift; sourceTree = "<group>"; };
 		3E8979162B8A45CE0061D83F /* WeatherUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUseCaseProtocol.swift; sourceTree = "<group>"; };
+		3EE8910E2B8E61BE009DD07D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EEB57D82B8B43B9003879F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,6 +199,7 @@
 		3E8978DA2B89F66F0061D83F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3EE8910D2B8E61B5009DD07D /* Application */,
 				3E7BE8962B8D0E8900319DFE /* Enum */,
 				3E8978DE2B8A26320061D83F /* Extension */,
 				3E8978DF2B8A26410061D83F /* Networking */,
@@ -384,6 +387,14 @@
 			path = "Use Case";
 			sourceTree = "<group>";
 		};
+		3EE8910D2B8E61B5009DD07D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				3EE8910E2B8E61BE009DD07D /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -524,6 +535,7 @@
 				3E8978B02B89F1DF0061D83F /* CleanWeather.xcdatamodeld in Sources */,
 				3E8978EB2B8A31620061D83F /* Endpoint.swift in Sources */,
 				3E8978E42B8A2FF60061D83F /* NSManagedObjectContext.swift in Sources */,
+				3EE8910F2B8E61BE009DD07D /* AppDelegate.swift in Sources */,
 				3E8978EF2B8A318D0061D83F /* HTTPMethod.swift in Sources */,
 				3E7BE8932B8D04EE00319DFE /* HourlyForecastView.swift in Sources */,
 				3E89790F2B8A45720061D83F /* Weather.swift in Sources */,

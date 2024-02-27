@@ -13,7 +13,7 @@ final class WeatherRepository: WeatherRepositoryProtocol {
     private lazy var remoteRepository = WeatherRemoteRepository()
     
     func getWeather(location: CLLocation) async -> WeatherData {
-        debugPrint("Repository")
+        log.info("Repository")
         return await remoteRepository.getWeather(location: location)
     }
 }
