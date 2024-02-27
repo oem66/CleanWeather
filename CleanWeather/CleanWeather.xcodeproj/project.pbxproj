@@ -39,6 +39,7 @@
 		3E8979132B8A45A10061D83F /* WeatherRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8979122B8A45A10061D83F /* WeatherRepositoryProtocol.swift */; };
 		3E8979152B8A45C60061D83F /* WeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8979142B8A45C60061D83F /* WeatherUseCase.swift */; };
 		3E8979172B8A45CE0061D83F /* WeatherUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8979162B8A45CE0061D83F /* WeatherUseCaseProtocol.swift */; };
+		3EE8910C2B8E6136009DD07D /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 3EE8910B2B8E6136009DD07D /* SwiftyBeaver */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EE8910C2B8E6136009DD07D /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +400,9 @@
 			dependencies = (
 			);
 			name = CleanWeather;
+			packageProductDependencies = (
+				3EE8910B2B8E6136009DD07D /* SwiftyBeaver */,
+			);
 			productName = CleanWeather;
 			productReference = 3E8978A72B89F1DF0061D83F /* CleanWeather.app */;
 			productType = "com.apple.product-type.application";
@@ -470,6 +475,9 @@
 				Base,
 			);
 			mainGroup = 3E89789E2B89F1DF0061D83F;
+			packageReferences = (
+				3EE8910A2B8E6136009DD07D /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+			);
 			productRefGroup = 3E8978A82B89F1DF0061D83F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -903,6 +911,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3EE8910A2B8E6136009DD07D /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3EE8910B2B8E6136009DD07D /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3EE8910A2B8E6136009DD07D /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		3E8978AE2B89F1DF0061D83F /* CleanWeather.xcdatamodeld */ = {
