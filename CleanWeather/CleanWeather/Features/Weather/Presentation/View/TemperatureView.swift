@@ -13,15 +13,16 @@ struct TemperatureView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
-            Text("🇺🇸 Denver, CO")
+            Text(viewModel.placemark)
                 .font(.custom("Avenir-Medium", size: 30))
                 .fontWeight(.heavy)
                 .foregroundColor(.black)
+                .multilineTextAlignment(.center)
                 .padding(.top, 40)
             Image("cloudy")
                 .resizable()
                 .frame(width: 220, height: 190)
-            Text("\(viewModel.weatherData.currentWeather?.temperature ?? 0.0, specifier: "%.1f")°C")
+            Text("\(viewModel.weatherData.currentWeather?.temperature.nextUp ?? 0.0, specifier: "%.1f")°C")
                 .font(.custom("Avenir-Medium", size: 40))
                 .fontWeight(.heavy)
                 .foregroundColor(.black)
