@@ -52,10 +52,7 @@ struct DayWeatherConditions: Decodable {
     var overnightForecast: DayPartForecast
     var precipitationAmount: Double
     var precipitationChance: Double
-    var precipitationType: PrecipitationType
     var snowfallAmount: Double
-    var solarMidnight: Date
-    var solarNoon: Date
     var sunrise: Date
     var sunset: Date
     var temperatureMax: Double
@@ -70,7 +67,6 @@ struct DayPartForecast: Decodable {
     var humidity: Double
     var precipitationAmount: Double
     var precipitationChance: Double
-    var precipitationType: PrecipitationType
     var snowfallAmount: Double
     var windDirection: Int
     var windSpeed: Double
