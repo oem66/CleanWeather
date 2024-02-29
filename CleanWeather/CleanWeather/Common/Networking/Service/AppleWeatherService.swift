@@ -20,6 +20,45 @@ final class AppleWeatherService: AppleWeatherServiceProtocol {
     func getAppleWeather(location: CLLocation) async -> WeatherData {
         do {
             let result = try await self.service.weather(for: location)
+            
+            var dayWeatherConditions = [DayWeatherConditions]()
+            for forecast in result.dailyForecast {
+                dayWeatherConditions.append(DayWeatherConditions(conditionCode: forecast.condition.description,
+                                                                 daytimeForecast: DayPartForecast(cloudCover: forecast.,
+                                                                                                  conditionCode: <#T##String#>,
+                                                                                                  forecastEnd: <#T##Date#>,
+                                                                                                  forecastStart: <#T##Date#>,
+                                                                                                  humidity: <#T##Double#>,
+                                                                                                  precipitationAmount: <#T##Double#>,
+                                                                                                  precipitationChance: <#T##Double#>,
+                                                                                                  snowfallAmount: <#T##Double#>,
+                                                                                                  windDirection: <#T##Int#>,
+                                                                                                  windSpeed: <#T##Double#>),
+                                                                 forecastEnd: Date(),
+                                                                 forecastStart: Date(),
+                                                                 maxUvIndex: forecast.uvIndex.value,
+                                                                 moonPhase: MoonPhase(value: forecast.moon.phase.description),
+                                                                 moonrise: forecast.moon.moonrise ?? Date(),
+                                                                 moonset: forecast.moon.moonset ?? Date(),
+                                                                 overnightForecast: DayPartForecast(cloudCover: <#T##Double#>,
+                                                                                                    conditionCode: <#T##String#>,
+                                                                                                    forecastEnd: <#T##Date#>,
+                                                                                                    forecastStart: <#T##Date#>,
+                                                                                                    humidity: <#T##Double#>,
+                                                                                                    precipitationAmount: <#T##Double#>,
+                                                                                                    precipitationChance: <#T##Double#>,
+                                                                                                    snowfallAmount: <#T##Double#>,
+                                                                                                    windDirection: <#T##Int#>,
+                                                                                                    windSpeed: <#T##Double#>),
+                                                                 precipitationAmount: forecast.precipitationAmount.value,
+                                                                 precipitationChance: forecast.precipitationChance,
+                                                                 snowfallAmount: forecast.snowfallAmount.value,
+                                                                 sunrise: forecast.sun.sunrise ?? Date(),
+                                                                 sunset: forecast.sun.sunset ?? Date(),
+                                                                 temperatureMax: forecast.highTemperature.value,
+                                                                 temperatureMin: forecast.lowTemperature.value))
+            }
+            
             let weatherData = WeatherData(currentWeather: CurrentWeather(asOf: result.currentWeather.date,
                                                                          cloudCover: result.currentWeather.cloudCover,
                                                                          conditionCode: result.currentWeather.condition.description,
@@ -33,7 +72,9 @@ final class AppleWeatherService: AppleWeatherServiceProtocol {
                                                                          visibility: result.currentWeather.visibility.value,
                                                                          windDirection: Int(result.currentWeather.wind.direction.value),
                                                                          windGust: result.currentWeather.wind.gust?.value ?? 0.0,
-                                                                         windSpeed: result.currentWeather.wind.speed.value))
+                                                                         windSpeed: result.currentWeather.wind.speed.value),
+                                          forecastDaily: DailyForecast(days: dayWeatherConditions,
+                                                                       learnMoreURL: ""))
             log.info("Service Weather data \(weatherData)")
             return weatherData
         } catch {
