@@ -10,7 +10,6 @@ import SwiftUI
 
 struct DailyForecastView: View {
     @ObservedObject var viewModel: WeatherViewModel
-    @State private var hours = [0,1,2,3,4,5,6,7,8,9,10,11,12]
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -24,7 +23,7 @@ struct DailyForecastView: View {
                             .font(.custom("Avenir-Medium", size: 20))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
-                        Text("Min: \(day.temperatureMin, specifier: "%.1f") h")
+                        Text("Min: \(day.temperatureMin, specifier: "%.1f")°")
                             .font(.custom("Avenir-Medium", size: 20))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
