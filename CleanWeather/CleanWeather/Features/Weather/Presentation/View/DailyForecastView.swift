@@ -8,23 +8,28 @@
 import Foundation
 import SwiftUI
 
-struct HourlyForecastView: View {
+struct DailyForecastView: View {
     @ObservedObject var viewModel: WeatherViewModel
-    @State private var hours = [0,1,2,3,4,5,6,7,8,9,10,11,12]
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(hours, id: \.self) { hour in
-                    VStack(alignment: .center, spacing: 5) {
+                ForEach(viewModel.weatherData.forecastDaily?.days ?? [DayWeatherConditions](), id: \.self) { day in
+                    VStack(alignment: .center, spacing: 10) {
+                        if let date = day.forecastStart {
+                            Text("\(date.formatted(.dateTime.weekday()))")
+                                .font(.custom("Avenir-Medium", size: 28))
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                        }
                         Image("sun")
                             .resizable()
                             .frame(width: 60, height: 50)
-                        Text("15°")
+                        Text("Max: \(day.temperatureMax, specifier: "%.0f")°C")
                             .font(.custom("Avenir-Medium", size: 20))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
-                        Text("\(hour) h")
+                        Text("Min: \(day.temperatureMin, specifier: "%.0f")°C")
                             .font(.custom("Avenir-Medium", size: 20))
                             .fontWeight(.bold)
                             .foregroundColor(.white)

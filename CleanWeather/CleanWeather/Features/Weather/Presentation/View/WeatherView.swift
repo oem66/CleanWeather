@@ -17,7 +17,7 @@ struct WeatherView: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                 TemperatureView(viewModel: viewModel)
-                HourlyForecastView(viewModel: viewModel)
+                DailyForecastView(viewModel: viewModel)
                 StatisticsView(viewModel: viewModel)
             }
         }
