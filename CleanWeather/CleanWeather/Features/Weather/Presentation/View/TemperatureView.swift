@@ -19,6 +19,7 @@ struct TemperatureView: View {
                 .foregroundColor(.black)
                 .multilineTextAlignment(.center)
                 .padding(.top, 40)
+            
             Image("sun")
                 .resizable()
                 .frame(width: 220, height: 190)
