@@ -19,9 +19,11 @@ struct TemperatureView: View {
                 .foregroundColor(.black)
                 .multilineTextAlignment(.center)
                 .padding(.top, 40)
+            
             Image("sun")
                 .resizable()
                 .frame(width: 220, height: 190)
+            
             Text("\(viewModel.weatherData.currentWeather?.temperature.nextUp ?? 0.0, specifier: "%.1f")°C")
                 .font(.custom("Avenir-Medium", size: 40))
                 .fontWeight(.heavy)
