@@ -35,21 +35,19 @@ struct CurrentWeather: Decodable {
 }
 
 // MARK: - Daily Forecast
-struct DailyForecast: Decodable {
+struct DailyForecast: Hashable, Decodable {
     var days: [DayWeatherConditions]
     var learnMoreURL: String
 }
 
-struct DayWeatherConditions: Decodable {
+struct DayWeatherConditions: Hashable, Decodable {
     var conditionCode: String
-    var daytimeForecast: DayPartForecast
     var forecastEnd: Date
     var forecastStart: Date
     var maxUvIndex: Int
     var moonPhase: MoonPhase
     var moonrise: Date
     var moonset: Date
-    var overnightForecast: DayPartForecast
     var precipitationAmount: Double
     var precipitationChance: Double
     var snowfallAmount: Double
@@ -59,20 +57,20 @@ struct DayWeatherConditions: Decodable {
     var temperatureMin: Double
 }
 
-struct DayPartForecast: Decodable {
-    var cloudCover: Double
-    var conditionCode: String
-    var forecastEnd: Date
-    var forecastStart: Date
-    var humidity: Double
-    var precipitationAmount: Double
-    var precipitationChance: Double
-    var snowfallAmount: Double
-    var windDirection: Int
-    var windSpeed: Double
-}
+//struct DayPartForecast: Decodable {
+//    var cloudCover: Double
+//    var conditionCode: String
+//    var forecastEnd: Date
+//    var forecastStart: Date
+//    var humidity: Double
+//    var precipitationAmount: Double
+//    var precipitationChance: Double
+//    var snowfallAmount: Double
+//    var windDirection: Int
+//    var windSpeed: Double
+//}
 
-struct MoonPhase: Decodable {
+struct MoonPhase: Hashable, Decodable {
     var value: String
 }
 
