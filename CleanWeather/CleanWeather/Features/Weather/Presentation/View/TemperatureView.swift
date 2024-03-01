@@ -34,7 +34,7 @@ struct TemperatureView: View {
                 .padding(.horizontal, 15)
                 .background(Color(red: 0.96, green: 0.96, blue: 0.96))
                 .cornerRadius(20)
-            Text("H:\(viewModel.weatherData.forecastDaily?.days[0].temperatureMax ?? 0.0, specifier: "%.1f")° L:\(viewModel.weatherData.forecastDaily?.days[0].temperatureMin ?? 0.0, specifier: "%.1f")°")
+            Text("H:\(viewModel.weatherData.forecastDaily?.days[0].temperatureMax ?? 0.0, specifier: "%.0f")°C - L:\(viewModel.weatherData.forecastDaily?.days[0].temperatureMin ?? 0.0, specifier: "%.0f")°C")
                 .font(.custom("Avenir-Medium", size: 20))
                 .fontWeight(.bold)
                 .foregroundColor(.black)

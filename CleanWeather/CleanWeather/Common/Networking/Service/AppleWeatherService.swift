@@ -24,8 +24,7 @@ final class AppleWeatherService: AppleWeatherServiceProtocol {
             var dayWeatherConditions = [DayWeatherConditions]()
             for forecast in result.dailyForecast {
                 dayWeatherConditions.append(DayWeatherConditions(conditionCode: forecast.condition.description,
-                                                                 forecastEnd: Date(),
-                                                                 forecastStart: Date(),
+                                                                 forecastStart: forecast.date,
                                                                  maxUvIndex: forecast.uvIndex.value,
                                                                  moonPhase: MoonPhase(value: forecast.moon.phase.description),
                                                                  moonrise: forecast.moon.moonrise ?? Date(),

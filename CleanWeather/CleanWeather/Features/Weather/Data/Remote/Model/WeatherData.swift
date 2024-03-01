@@ -42,8 +42,7 @@ struct DailyForecast: Hashable, Decodable {
 
 struct DayWeatherConditions: Hashable, Decodable {
     var conditionCode: String
-    var forecastEnd: Date
-    var forecastStart: Date
+    var forecastStart: Date?
     var maxUvIndex: Int
     var moonPhase: MoonPhase
     var moonrise: Date
