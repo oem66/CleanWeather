@@ -8,8 +8,8 @@
 import Foundation
 
 struct AirQualityResponseModel: Decodable {
-    var coord: Coordinates
-    var list: AirQuality
+    var coord: Coordinates?
+    var list: AirQuality?
 }
 
 struct Coordinates: Decodable {

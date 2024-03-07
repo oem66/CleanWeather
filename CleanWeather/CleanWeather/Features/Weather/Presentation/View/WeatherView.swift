@@ -19,6 +19,7 @@ struct WeatherView: View {
                 TemperatureView(viewModel: viewModel)
                 DailyForecastView(viewModel: viewModel)
                 StatisticsView(viewModel: viewModel)
+                AirQualityView()
             }
         }
         .onAppear {
