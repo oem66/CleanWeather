@@ -26,9 +26,12 @@ extension HTTPClient {
             return .failure(.invalidURL)
         }
         
+        log.info("URL: \(url)")
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.method.rawValue
         request.allHTTPHeaderFields = endpoint.header
+        
+        log.info("REQUEST: \(request)")
         
         if let body = endpoint.body {
             log.info("Body: \(body)")

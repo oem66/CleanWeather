@@ -13,12 +13,13 @@ struct AirQualityView: View {
     
     var body: some View {
         VStack {
-            Text("Air Quality")
-                .fontWeight(.heavy)
+            if let aqi = viewModel.airQualityData.list?[0].main?.aqi {
+                Text("Air Quality: \(aqi)")
+                    .fontWeight(.heavy)
+            }
         }
         .onAppear {
             Task {
-                await viewModel.getUserLocation()
                 await viewModel.getAirQuality()
             }
         }
