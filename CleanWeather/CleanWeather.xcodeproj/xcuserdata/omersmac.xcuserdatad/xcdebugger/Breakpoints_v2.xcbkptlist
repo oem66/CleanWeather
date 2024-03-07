@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EB9CDC4D-C808-4C36-BB33-3CE2531837CF"
+            uuid = "E3A531E6-4D14-4AE4-86F1-A3853258A8E1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CleanWeather/Features/Air Quality/Presentation/View Model/AirQualityViewModel.swift"
+            filePath = "CleanWeather/Features/Air Quality/Data/Remote/AirQualityRemoteRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "getAirQuality()"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getAirQuality(model:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -15,7 +15,7 @@ extension AirQualityEndpoint: Endpoint {
     var host: String {
         switch self {
         case .aqi:
-            return "https://api.openweathermap.org"
+            return "api.openweathermap.org"
         }
     }
     
@@ -35,8 +35,10 @@ extension AirQualityEndpoint: Endpoint {
     
     var header: [String : String]? {
         switch self {
-        case .aqi:
-            return nil
+        case .aqi(let model):
+            return [
+                "Content-Type": "application/json",
+            ]
         }
     }
     

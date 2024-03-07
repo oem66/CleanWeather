@@ -9,7 +9,7 @@ import Foundation
 
 struct AirQualityResponseModel: Decodable {
     var coord: Coordinates?
-    var list: AirQuality?
+    var list: [AirQuality]?
 }
 
 struct Coordinates: Decodable {
@@ -18,8 +18,8 @@ struct Coordinates: Decodable {
 }
 
 struct AirQuality: Decodable {
-    var main: MainAQI
-    var components: AQIComponents
+    var main: MainAQI?
+    var components: AQIComponents?
 }
 
 struct MainAQI: Decodable {

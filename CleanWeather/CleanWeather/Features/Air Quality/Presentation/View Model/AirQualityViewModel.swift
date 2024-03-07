@@ -21,12 +21,16 @@ final class AirQualityViewModel: NSObject, ObservableObject, CLLocationManagerDe
     }
     
     func getAirQuality() async {
+        getUserLocation()
+        await Task.sleep(2_000_000_000)
         Task {
+            log.verbose("CREATE MODEL")
             let model = AirQualityRequestModel(latitude: location.coordinate.latitude,
                                                longitude: location.coordinate.longitude)
-            guard let data = await useCase.getAirQuality(model: model) else { return }
-            log.info("Air Quality Data: \(data)")
-            assignValueToAirQuality(data: data)
+            log.verbose("AQI Model: \(model)")
+            if let data = await useCase.getAirQuality(model: model) {
+                assignValueToAirQuality(data: data)
+            }
         }
     }
     
@@ -37,7 +41,8 @@ final class AirQualityViewModel: NSObject, ObservableObject, CLLocationManagerDe
         }
     }
     
-    func getUserLocation() async {
+    func getUserLocation() {
+        log.info("GET USER LOCATION")
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
