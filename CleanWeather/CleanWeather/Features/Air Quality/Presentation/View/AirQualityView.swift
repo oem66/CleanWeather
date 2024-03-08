@@ -13,11 +13,18 @@ struct AirQualityView: View {
     
     var body: some View {
         VStack {
-            if let aqi = viewModel.airQualityData.list?[0].main?.aqi {
-                Text("Air Quality: \(aqi)")
-                    .fontWeight(.heavy)
+            VStack(alignment: .leading) {
+                if let aqi = viewModel.airQualityData.list?[0].main?.aqi {
+                    Text("\(aqi) AQI")
+                        .fontWeight(.heavy)
+                        .font(.custom("Avenir-Medium", size: 22))
+                        .padding(.horizontal, 15)
+                        .padding(.vertical, 25)
+                }
             }
         }
+        .background(Color(red: 0.96, green: 0.96, blue: 0.96))
+        .cornerRadius(15)
         .onAppear {
             Task {
                 await viewModel.getAirQuality()
