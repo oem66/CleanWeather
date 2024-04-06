@@ -13,6 +13,7 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     @Published var weatherData = WeatherData()
     @Published var location = CLLocation()
     @Published var placemark = ""
+    @Published var country = ""
     
     private let useCase: WeatherUseCaseProtocol
     
@@ -56,6 +57,7 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
             if let country = place?.country,
                let city = place?.locality {
                 self.placemark = "📍\(city)"
+                self.country = country
             }
         }
     }
