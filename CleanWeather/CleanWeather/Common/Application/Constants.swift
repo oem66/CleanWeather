@@ -13,11 +13,11 @@ final class Constants {
     static let defaultBackground = Color(red: 0/255, green: 0/255, blue: 0/255)
     
     // MARK: - Air Quality colors
-    static let aqiGood = Color(red: 0/255, green: 0/255, blue: 0/255)
-    static let aqiModerate = Color(red: 0/255, green: 0/255, blue: 0/255)
-    static let aqiUnhealthySensitiveGroups = Color(red: 0/255, green: 0/255, blue: 0/255)
-    static let aqiUnhealthy = Color(red: 0/255, green: 0/255, blue: 0/255)
-    static let aqiVeryUnhealthy = Color(red: 0/255, green: 0/255, blue: 0/255)
-    static let aqiHazardous = Color(red: 0/255, green: 0/255, blue: 0/255)
+    static let aqiGood: Color = .green
+    static let aqiModerate: Color = .yellow
+    static let aqiUnhealthySensitiveGroups: Color = .orange
+    static let aqiUnhealthy: Color = .red
+    static let aqiVeryUnhealthy: Color = .purple
+    static let aqiHazardous: Color = .black
     
 }
