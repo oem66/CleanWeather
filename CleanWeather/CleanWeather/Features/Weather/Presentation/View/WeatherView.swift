@@ -12,14 +12,17 @@ struct WeatherView: View {
     @StateObject private var viewModel = WeatherViewModel()
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             // MARK: place ads here
-            
             ScrollView(.vertical, showsIndicators: false) {
                 TemperatureView(viewModel: viewModel)
                 DailyForecastView(viewModel: viewModel)
                 StatisticsView(viewModel: viewModel)
-                AirQualityView()
+                HStack {
+                    AirQualityView()
+                    Spacer()
+                }
+                .padding(20)
             }
         }
         .onAppear {

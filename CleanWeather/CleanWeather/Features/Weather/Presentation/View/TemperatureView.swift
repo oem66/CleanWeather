@@ -13,12 +13,20 @@ struct TemperatureView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
-            Text(viewModel.placemark)
-                .font(.custom("Avenir-Medium", size: 30))
-                .fontWeight(.heavy)
-                .foregroundColor(.black)
-                .multilineTextAlignment(.center)
-                .padding(.top, 40)
+            HStack {
+                Text(viewModel.placemark + ",")
+                    .font(.custom("Avenir-Medium", size: 30))
+                    .fontWeight(.heavy)
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 40)
+                Text(viewModel.country)
+                    .font(.custom("Avenir-Medium", size: 30))
+                    .fontWeight(.heavy)
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 40)
+            }
             
             Image("sun")
                 .resizable()
