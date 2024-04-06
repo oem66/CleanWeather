@@ -51,6 +51,7 @@
 		3EDDDA222B98ECF4009F5722 /* AirQualityRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDDA212B98ECF4009F5722 /* AirQualityRequestModel.swift */; };
 		3EDDDA242B98EE71009F5722 /* AirQualityEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDDA232B98EE71009F5722 /* AirQualityEndpoint.swift */; };
 		3EDDDA2E2B98F5E5009F5722 /* AirQualityUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDDA2D2B98F5E5009F5722 /* AirQualityUseCaseProtocol.swift */; };
+		3EE1CD832BC1D3E000A0C7FE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1CD822BC1D3E000A0C7FE /* Constants.swift */; };
 		3EE8910C2B8E6136009DD07D /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 3EE8910B2B8E6136009DD07D /* SwiftyBeaver */; };
 		3EE8910F2B8E61BE009DD07D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE8910E2B8E61BE009DD07D /* AppDelegate.swift */; };
 		3EE891122B8E68FF009DD07D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3EE891112B8E68FF009DD07D /* Lottie */; };
@@ -124,6 +125,7 @@
 		3EDDDA212B98ECF4009F5722 /* AirQualityRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityRequestModel.swift; sourceTree = "<group>"; };
 		3EDDDA232B98EE71009F5722 /* AirQualityEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityEndpoint.swift; sourceTree = "<group>"; };
 		3EDDDA2D2B98F5E5009F5722 /* AirQualityUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityUseCaseProtocol.swift; sourceTree = "<group>"; };
+		3EE1CD822BC1D3E000A0C7FE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3EE8910E2B8E61BE009DD07D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EE891142B8E6B3E009DD07D /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		3EE891172B8E724F009DD07D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				3EE8910E2B8E61BE009DD07D /* AppDelegate.swift */,
+				3EE1CD822BC1D3E000A0C7FE /* Constants.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				3E8978EB2B8A31620061D83F /* Endpoint.swift in Sources */,
 				3E8978E42B8A2FF60061D83F /* NSManagedObjectContext.swift in Sources */,
 				3E2D29892B9A402300127481 /* AirQualityRemoteRepository.swift in Sources */,
+				3EE1CD832BC1D3E000A0C7FE /* Constants.swift in Sources */,
 				3E2D29922B9A586300127481 /* AirQualityView.swift in Sources */,
 				3EDDDA2E2B98F5E5009F5722 /* AirQualityUseCaseProtocol.swift in Sources */,
 				3EE8910F2B8E61BE009DD07D /* AppDelegate.swift in Sources */,
