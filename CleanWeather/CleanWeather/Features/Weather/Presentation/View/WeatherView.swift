@@ -16,6 +16,7 @@ struct WeatherView: View {
             // MARK: place ads here
             ScrollView(.vertical, showsIndicators: false) {
                 TemperatureView(viewModel: viewModel)
+                TemperatureChartView(viewModel: viewModel)
                 DailyForecastView(viewModel: viewModel)
                 StatisticsView(viewModel: viewModel)
                 HStack {
