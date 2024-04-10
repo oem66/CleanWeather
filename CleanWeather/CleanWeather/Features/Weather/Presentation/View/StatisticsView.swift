@@ -27,10 +27,6 @@ struct StatisticsView: View {
                 .padding(.leading, 15)
             Group {
                 LazyVGrid(columns: columns, spacing: 20) {
-                    StatisticCard("AQI", nil, 30, unit: "")
-                    StatisticCard("UV Index", nil, viewModel.weatherData.currentWeather?.uvIndex, unit: "")
-                }
-                LazyVGrid(columns: columns, spacing: 20) {
                     StatisticCard("Pressure", viewModel.weatherData.currentWeather?.pressure, nil, unit: "mb")
                     StatisticCard("Humidity", viewModel.weatherData.currentWeather?.humidity, nil, unit: "")
                 }
@@ -41,6 +37,9 @@ struct StatisticsView: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     StatisticCard("Wind Speed", viewModel.weatherData.currentWeather?.windSpeed, nil, unit: "km/h")
                     StatisticCard("Wind Gust", viewModel.weatherData.currentWeather?.windGust, nil, unit: "km/h")
+                }
+                LazyVGrid(columns: columns, spacing: 20) {
+                    StatisticCard("UV Index", nil, viewModel.weatherData.currentWeather?.uvIndex, unit: "")
                 }
             }
             .padding(.horizontal, 20)
