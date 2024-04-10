@@ -12,9 +12,9 @@ struct AirQualityView: View {
     @StateObject private var viewModel = AirQualityViewModel()
     
     var body: some View {
-        VStack {
+        GeometryReader { geometry in
             VStack(alignment: .leading) {
-                AQILineView()
+                AQILineView(width: geometry.size.width - 20, height: 15)
                     .padding(.bottom, 5)
                     .padding(.top, 15)
                 if let aqi = viewModel.airQualityData.list?[0].main?.aqi {
@@ -25,62 +25,62 @@ struct AirQualityView: View {
                         .padding(.vertical, 25)
                 }
             }
-        }
-        .frame(width: 200)
-        .background(Color(red: 0.96, green: 0.96, blue: 0.96))
-        .cornerRadius(15)
-        .onAppear {
-            Task {
-                await viewModel.getAirQuality()
+            .frame(width: geometry.size.width - 20)
+            .background(Color(red: 0.96, green: 0.96, blue: 0.96))
+            .cornerRadius(15)
+            .padding([.horizontal], 20)
+            .onAppear {
+                Task {
+                    await viewModel.getAirQuality()
+                }
             }
         }
     }
 }
 
 struct AQILineView: View {
+    let width: CGFloat
+    let height: CGFloat
+    
     var body: some View {
         HStack(spacing: 0) {
             Spacer()
-            
             VStack {
                 
             }
-            .frame(width: 30, height: 10)
+            .frame(width: width/7, height: 15)
             .background(Constants.aqiGood)
             
             VStack {
                 
             }
-            .frame(width: 30, height: 10)
+            .frame(width: width/7, height: 15)
             .background(Constants.aqiModerate)
             
             VStack {
                 
             }
-            .frame(width: 30, height: 10)
+            .frame(width: width/7, height: 15)
             .background(Constants.aqiUnhealthySensitiveGroups)
             
             VStack {
                 
             }
-            .frame(width: 30, height: 10)
+            .frame(width: width/7, height: 15)
             .background(Constants.aqiUnhealthy)
             
             VStack {
                 
             }
-            .frame(width: 30, height: 10)
+            .frame(width: width/7, height: 15)
             .background(Constants.aqiVeryUnhealthy)
             
             VStack {
                 
             }
-            .frame(width: 30, height: 10)
+            .frame(width: width/7, height: 15)
             .background(Constants.aqiHazardous)
-            
             Spacer()
         }
-        .frame(width: 180, height: 10)
-        .cornerRadius(10)
     }
 }
