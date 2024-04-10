@@ -41,7 +41,7 @@ struct TemperatureChartView: View {
                 .lineStyle(.init(lineWidth: 2))
                 .symbol {
                     Circle()
-                        .fill(.green)
+                        .fill(.red)
                         .frame(width: 12, height: 12)
                 }
                 
@@ -54,7 +54,7 @@ struct TemperatureChartView: View {
                 .lineStyle(.init(lineWidth: 2))
                 .symbol {
                     Circle()
-                        .fill(.yellow)
+                        .fill(.blue)
                         .frame(width: 12, height: 12)
                 }
             }
