@@ -24,7 +24,7 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
         self.useCase = useCase
     }
     
-    func getWeather(location: CLLocation) async {
+    private func getWeather(location: CLLocation) async {
         Task {
             let data = await useCase.getWeather(location: location)
             assignValueToWeather(data: data)
@@ -59,6 +59,10 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
                 self.placemark = "📍\(city)"
                 self.country = country
             }
+        }
+        
+        Task {
+            await getWeather(location: location)
         }
     }
 }

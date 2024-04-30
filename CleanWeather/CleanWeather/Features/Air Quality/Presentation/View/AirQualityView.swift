@@ -30,9 +30,10 @@ struct AirQualityView: View {
             .cornerRadius(15)
             .padding([.horizontal], 20)
             .onAppear {
-                Task {
-                    await viewModel.getAirQuality()
-                }
+                viewModel.getUserLocation()
+//                Task {
+//                    await viewModel.getAirQuality()
+//                }
             }
         }
     }

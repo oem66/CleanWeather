@@ -20,9 +20,7 @@ final class AirQualityViewModel: NSObject, ObservableObject, CLLocationManagerDe
         self.useCase = useCase
     }
     
-    func getAirQuality() async {
-        getUserLocation()
-        await Task.sleep(2_000_000_000)
+    private func getAirQuality(location: CLLocation) {
         Task {
             log.verbose("CREATE MODEL")
             let model = AirQualityRequestModel(latitude: location.coordinate.latitude,
@@ -54,5 +52,7 @@ final class AirQualityViewModel: NSObject, ObservableObject, CLLocationManagerDe
         }
         locationManager.stopUpdatingLocation()
         self.location = location
+        
+        getAirQuality(location: location)
     }
 }
