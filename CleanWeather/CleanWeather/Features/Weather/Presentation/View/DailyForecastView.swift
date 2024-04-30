@@ -28,11 +28,11 @@ struct DailyForecastView: View {
                                     VStack(alignment: .leading) {
                                         Text("\(date.formatted(.dateTime.weekday()))")
                                             .font(.custom("Avenir-Medium", size: 24))
-                                            .fontWeight(.semibold)
+                                            .fontWeight(.heavy)
                                             .foregroundColor(.white)
                                         Text(getFormattedDate(date: date))
                                             .font(.custom("Avenir-Medium", size: 17))
-                                            .fontWeight(.semibold)
+                                            .fontWeight(.bold)
                                             .foregroundColor(.white)
                                     }
                                     Spacer()
