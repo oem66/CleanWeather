@@ -60,7 +60,7 @@ struct DailyForecastView: View {
                             Spacer()
                         }
                         .padding(10)
-                        .background(Color(red: 45/255, green: 52/255, blue: 54/255))
+                        .background(Constants.cardItemBackground)
                         .cornerRadius(15)
                     }
                 }
