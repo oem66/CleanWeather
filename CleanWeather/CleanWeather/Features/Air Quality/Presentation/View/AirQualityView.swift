@@ -31,9 +31,6 @@ struct AirQualityView: View {
             .padding([.horizontal], 20)
             .onAppear {
                 viewModel.getUserLocation()
-//                Task {
-//                    await viewModel.getAirQuality()
-//                }
             }
         }
     }
