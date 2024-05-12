@@ -17,13 +17,13 @@ struct TemperatureView: View {
                 Text(viewModel.placemark + ",")
                     .font(.custom("Avenir-Medium", size: 30))
                     .fontWeight(.heavy)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding(.top, 40)
                 Text(viewModel.country)
                     .font(.custom("Avenir-Medium", size: 30))
                     .fontWeight(.heavy)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding(.top, 40)
             }
@@ -35,7 +35,7 @@ struct TemperatureView: View {
             Text("\(viewModel.weatherData.currentWeather?.temperature.nextUp ?? 0.0, specifier: "%.0f")°C")
                 .font(.custom("Avenir-Medium", size: 40))
                 .fontWeight(.heavy)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
             Text(viewModel.weatherData.currentWeather?.conditionCode ?? "No Conditions data")
                 .font(.custom("Avenir-Medium", size: 20))
                 .fontWeight(.bold)
@@ -47,7 +47,7 @@ struct TemperatureView: View {
             Text("H:\(viewModel.weatherData.forecastDaily?.days[0].temperatureMax ?? 0.0, specifier: "%.0f")°C - L:\(viewModel.weatherData.forecastDaily?.days[0].temperatureMin ?? 0.0, specifier: "%.0f")°C")
                 .font(.custom("Avenir-Medium", size: 20))
                 .fontWeight(.bold)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
         }
     }
 }

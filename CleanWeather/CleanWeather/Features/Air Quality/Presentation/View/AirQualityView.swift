@@ -15,25 +15,22 @@ struct AirQualityView: View {
         GeometryReader { geometry in
             VStack(alignment: .leading) {
                 AQILineView(width: geometry.size.width - 20, height: 15)
-                    .padding(.bottom, 5)
                     .padding(.top, 15)
                 if let aqi = viewModel.airQualityData.list?[0].main?.aqi {
                     Text("\(aqi) AQI")
                         .fontWeight(.heavy)
                         .font(.custom("Avenir-Medium", size: 22))
+                        .foregroundColor(.white)
                         .padding(.horizontal, 15)
-                        .padding(.vertical, 25)
+                        .padding(.vertical, 10)
                 }
             }
             .frame(width: geometry.size.width - 20)
-            .background(Color(red: 0.96, green: 0.96, blue: 0.96))
+            .background(Constants.cardItemBackground)
             .cornerRadius(15)
             .padding([.horizontal], 20)
             .onAppear {
                 viewModel.getUserLocation()
-//                Task {
-//                    await viewModel.getAirQuality()
-//                }
             }
         }
     }
@@ -51,6 +48,8 @@ struct AQILineView: View {
             }
             .frame(width: width/7, height: 15)
             .background(Constants.aqiGood)
+            .clipShape(.rect(topLeadingRadius: 8))
+            .clipShape(.rect(bottomLeadingRadius: 8))
             
             VStack {
                 
@@ -81,6 +80,8 @@ struct AQILineView: View {
             }
             .frame(width: width/7, height: 15)
             .background(Constants.aqiHazardous)
+            .clipShape(.rect(topTrailingRadius: 8))
+            .clipShape(.rect(bottomTrailingRadius: 8))
             Spacer()
         }
     }

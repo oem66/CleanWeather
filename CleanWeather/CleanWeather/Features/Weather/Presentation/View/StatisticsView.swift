@@ -22,7 +22,7 @@ struct StatisticsView: View {
             Text("Statistics")
                 .font(.custom("Avenir-Medium", size: 25))
                 .fontWeight(.heavy)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .padding(.bottom, 15)
                 .padding(.leading, 15)
             Group {
@@ -57,17 +57,19 @@ struct StatisticsView: View {
                     .foregroundColor(.gray)
                 Spacer()
             }
+            .padding(.bottom, 5)
+            
             HStack {
                 if let doubleValue {
                     Text("\(doubleValue, specifier: "%.1f")")
                         .font(.custom("Avenir-Medium", size: 20))
                         .fontWeight(.bold)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                 } else if let intValue {
                     Text("\(intValue)")
                         .font(.custom("Avenir-Medium", size: 20))
                         .fontWeight(.bold)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                 }
                 
                 Text(unit)
@@ -80,9 +82,9 @@ struct StatisticsView: View {
             }
             
         }
-        .padding(.vertical, 25)
+        .padding(.vertical, 10)
         .padding(.horizontal, 10)
-        .background(Color(red: 0.96, green: 0.96, blue: 0.96))
+        .background(Constants.cardItemBackground)
         .cornerRadius(15)
     }
 }

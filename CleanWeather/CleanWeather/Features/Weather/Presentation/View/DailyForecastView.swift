@@ -16,7 +16,7 @@ struct DailyForecastView: View {
             Text("This Week")
                 .font(.custom("Avenir-Medium", size: 25))
                 .fontWeight(.heavy)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .padding(.bottom, 15)
                 .padding(.leading, 15)
             ScrollView(.vertical, showsIndicators: false) {
@@ -60,7 +60,7 @@ struct DailyForecastView: View {
                             Spacer()
                         }
                         .padding(10)
-                        .background(Color(red: 45/255, green: 52/255, blue: 54/255))
+                        .background(Constants.cardItemBackground)
                         .cornerRadius(15)
                     }
                 }

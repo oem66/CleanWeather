@@ -25,6 +25,7 @@ struct WeatherView: View {
                 }
             }
         }
+        .background(Constants.defaultBackground)
         .onAppear {
             log.info("==================== Weather View ====================")
             Task {
