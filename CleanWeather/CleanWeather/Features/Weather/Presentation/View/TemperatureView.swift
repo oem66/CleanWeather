@@ -13,20 +13,32 @@ struct TemperatureView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
-            HStack {
-                Text(viewModel.placemark + ",")
-                    .font(.custom("Avenir-Medium", size: 30))
-                    .fontWeight(.heavy)
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 40)
-                Text(viewModel.country)
-                    .font(.custom("Avenir-Medium", size: 30))
-                    .fontWeight(.heavy)
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 40)
+            VStack {
+                HStack {
+                    Text(viewModel.placemark + ", ")
+                        .font(.custom("Avenir-Medium", size: 25))
+                        .fontWeight(.heavy)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                    Text(viewModel.country)
+                        .font(.custom("Avenir-Medium", size: 25))
+                        .fontWeight(.bold)
+                        .foregroundColor(Constants.customGrayColor)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(3)
+                    Spacer()
+                }
+                HStack {
+                    Text(viewModel.currentDate)
+                        .font(.custom("Avenir-Medium", size: 20))
+                        .fontWeight(.bold)
+                        .foregroundColor(Constants.customGrayColor)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(3)
+                    Spacer()
+                }
             }
+            .padding(.top, 20)
             
             Image("sun")
                 .resizable()
@@ -48,6 +60,10 @@ struct TemperatureView: View {
                 .font(.custom("Avenir-Medium", size: 20))
                 .fontWeight(.bold)
                 .foregroundColor(.white)
+        }
+        .padding(.horizontal, 15)
+        .onAppear {
+            viewModel.formatDate()
         }
     }
 }
