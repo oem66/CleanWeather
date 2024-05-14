@@ -14,6 +14,8 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     @Published var location = CLLocation()
     @Published var placemark = ""
     @Published var country = ""
+    @Published var currentDate = ""
+    @Published var showLocationSelectionView = false
     
     private let useCase: WeatherUseCaseProtocol
     
@@ -22,6 +24,14 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     
     init(useCase: WeatherUseCaseProtocol = WeatherUseCase()) {
         self.useCase = useCase
+    }
+    
+    func formatDate() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM, EEEE"
+        dateFormatter.locale = Locale(identifier: "en_US")
+        
+        currentDate = dateFormatter.string(from: Date())
     }
     
     private func getWeather(location: CLLocation) async {
@@ -56,7 +66,7 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
             log.verbose("City: \(String(describing: place?.locality))")
             if let country = place?.country,
                let city = place?.locality {
-                self.placemark = "📍\(city)"
+                self.placemark = "\(city)"
                 self.country = country
             }
         }

@@ -13,7 +13,9 @@ struct CleanWeatherApp: App {
 
     var body: some Scene {
         WindowGroup {
-            WeatherView()
+            NavigationStack {
+                WeatherView()
+            }
         }
     }
 }
