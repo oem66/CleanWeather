@@ -44,7 +44,8 @@ struct TemperatureView: View {
                 Spacer()
                 
                 VStack {
-                    NavigationLink(destination: SelectLocationView(), isActive: $viewModel.showLocationSelectionView) {
+                    NavigationLink(destination: SelectLocationView(viewModel: viewModel),
+                                   isActive: $viewModel.showLocationSelectionView) {
                         Button {
                             viewModel.showLocationSelectionView.toggle()
                         } label: {
@@ -61,9 +62,10 @@ struct TemperatureView: View {
             }
             .padding(.top, 20)
             
-            Image("sun")
+            Image(systemName: viewModel.weatherSymbol)
                 .resizable()
-                .frame(width: 220, height: 190)
+                .frame(width: 150, height: 150)
+                .foregroundColor(.white)
             
             Text("\(viewModel.weatherData.currentWeather?.temperature.nextUp ?? 0.0, specifier: "%.0f")°C")
                 .font(.custom("Avenir-Medium", size: 40))
