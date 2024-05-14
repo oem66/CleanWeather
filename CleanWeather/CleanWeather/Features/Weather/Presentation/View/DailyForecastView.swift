@@ -18,7 +18,7 @@ struct DailyForecastView: View {
                 .fontWeight(.heavy)
                 .foregroundColor(.white)
                 .padding(.bottom, 15)
-                .padding(.leading, 15)
+                .padding(.leading, 20)
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
                     ForEach(viewModel.weatherData.forecastDaily?.days ?? [DayWeatherConditions](), id: \.self) { day in
@@ -38,6 +38,7 @@ struct DailyForecastView: View {
                                     Spacer()
                                 }
                                 .frame(width: 70)
+                                .padding(.leading, 20)
                             }
                             Spacer()
                             Text("\(day.temperatureMax, specifier: "%.0f")°")
@@ -53,12 +54,13 @@ struct DailyForecastView: View {
                                 .resizable()
                                 .frame(width: 40, height: 35)
                                 .foregroundColor(.white)
-                            Spacer()
-                            Text(day.conditionCode)
-                                .font(.custom("Avenir-Medium", size: 20))
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                            Spacer()
+                                .padding(.trailing, 20)
+//                            Spacer()
+//                            Text(day.conditionCode)
+//                                .font(.custom("Avenir-Medium", size: 20))
+//                                .fontWeight(.bold)
+//                                .foregroundColor(.white)
+//                            Spacer()
                         }
                         .padding(10)
                         .background(Constants.cardItemBackground)
