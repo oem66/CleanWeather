@@ -10,33 +10,54 @@ import SwiftUI
 
 struct TemperatureView: View {
     @ObservedObject var viewModel: WeatherViewModel
+    @State private var isAnimating = false
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
-            VStack {
-                HStack {
-                    Text(viewModel.placemark + ", ")
-                        .font(.custom("Avenir-Medium", size: 25))
-                        .fontWeight(.heavy)
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
-                    Text(viewModel.country)
-                        .font(.custom("Avenir-Medium", size: 25))
-                        .fontWeight(.bold)
-                        .foregroundColor(Constants.customGrayColor)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(3)
-                    Spacer()
+            HStack {
+                VStack {
+                    HStack {
+                        Text(viewModel.placemark + ", ")
+                            .font(.custom("Avenir-Medium", size: 25))
+                            .fontWeight(.heavy)
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                        Text(viewModel.country)
+                            .font(.custom("Avenir-Medium", size: 25))
+                            .fontWeight(.bold)
+                            .foregroundColor(Constants.customGrayColor)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(3)
+                        Spacer()
+                    }
+                    HStack {
+                        Text(viewModel.currentDate)
+                            .font(.custom("Avenir-Medium", size: 20))
+                            .fontWeight(.bold)
+                            .foregroundColor(Constants.customGrayColor)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(3)
+                        Spacer()
+                    }
                 }
-                HStack {
-                    Text(viewModel.currentDate)
-                        .font(.custom("Avenir-Medium", size: 20))
-                        .fontWeight(.bold)
-                        .foregroundColor(Constants.customGrayColor)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(3)
-                    Spacer()
+                
+                Spacer()
+                
+                VStack {
+                    NavigationLink(destination: SelectLocationView(), isActive: $viewModel.showLocationSelectionView) {
+                        Button {
+                            viewModel.showLocationSelectionView.toggle()
+                        } label: {
+                            Image(systemName: "square.grid.2x2.fill")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(Constants.customGrayColor)
+                                .padding(15)
+                        }
+                    }
                 }
+                .background(Constants.cardItemBackground)
+                .cornerRadius(10)
             }
             .padding(.top, 20)
             

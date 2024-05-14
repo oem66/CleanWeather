@@ -15,6 +15,7 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     @Published var placemark = ""
     @Published var country = ""
     @Published var currentDate = ""
+    @Published var showLocationSelectionView = false
     
     private let useCase: WeatherUseCaseProtocol
     
