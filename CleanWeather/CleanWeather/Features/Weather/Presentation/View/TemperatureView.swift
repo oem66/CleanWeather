@@ -61,6 +61,7 @@ struct TemperatureView: View {
                 .cornerRadius(10)
             }
             .padding(.top, 20)
+            .padding(.bottom, 30)
             
             Image(systemName: viewModel.weatherSymbol)
                 .resizable()
