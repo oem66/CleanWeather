@@ -18,7 +18,7 @@ struct DailyForecastView: View {
                 .fontWeight(.heavy)
                 .foregroundColor(.white)
                 .padding(.bottom, 15)
-                .padding(.leading, 15)
+                .padding(.leading, 20)
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
                     ForEach(viewModel.weatherData.forecastDaily?.days ?? [DayWeatherConditions](), id: \.self) { day in
@@ -27,17 +27,18 @@ struct DailyForecastView: View {
                                 HStack {
                                     VStack(alignment: .leading) {
                                         Text("\(date.formatted(.dateTime.weekday()))")
-                                            .font(.custom("Avenir-Medium", size: 24))
+                                            .font(.custom("Avenir-Medium", size: 20))
                                             .fontWeight(.heavy)
                                             .foregroundColor(.white)
                                         Text(getFormattedDate(date: date))
-                                            .font(.custom("Avenir-Medium", size: 17))
+                                            .font(.custom("Avenir-Medium", size: 20))
                                             .fontWeight(.bold)
                                             .foregroundColor(.white)
                                     }
                                     Spacer()
                                 }
                                 .frame(width: 70)
+                                .padding(.leading, 20)
                             }
                             Spacer()
                             Text("\(day.temperatureMax, specifier: "%.0f")°")
@@ -49,15 +50,17 @@ struct DailyForecastView: View {
                                 .fontWeight(.semibold)
                                 .foregroundColor(.white)
                             Spacer()
-                            Image("sun")
+                            Image(systemName: viewModel.setWeatherSymbolToDailyForecast(weatherCondition: day.conditionCode))
                                 .resizable()
-                                .frame(width: 60, height: 50)
-                            Spacer()
-                            Text("Sunny")
-                                .font(.custom("Avenir-Medium", size: 24))
-                                .fontWeight(.bold)
+                                .frame(width: 40, height: 35)
                                 .foregroundColor(.white)
-                            Spacer()
+                                .padding(.trailing, 20)
+//                            Spacer()
+//                            Text(day.conditionCode)
+//                                .font(.custom("Avenir-Medium", size: 20))
+//                                .fontWeight(.bold)
+//                                .foregroundColor(.white)
+//                            Spacer()
                         }
                         .padding(10)
                         .background(Constants.cardItemBackground)

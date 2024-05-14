@@ -16,6 +16,7 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     @Published var country = ""
     @Published var currentDate = ""
     @Published var showLocationSelectionView = false
+    @Published var weatherSymbol = "sun.max"
     
     private let useCase: WeatherUseCaseProtocol
     
@@ -44,7 +45,59 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     private func assignValueToWeather(data: WeatherData) {
         DispatchQueue.main.async {
             self.weatherData = data
+            if let weatherCondition = data.currentWeather?.conditionCode {
+                self.setWeatherSymbol(weatherCondition: weatherCondition)
+            }
         }
+    }
+    
+    private func setWeatherSymbol(weatherCondition: String) {
+        if weatherCondition == "Clear" {
+            weatherSymbol = "sun.max"
+        } else if weatherCondition == "Mostly Clear" {
+            weatherSymbol = "sun.min"
+        } else if weatherCondition == "Partly Cloudy" {
+            weatherSymbol = "cloud.sun"
+        } else if weatherCondition == "Mostly Cloudy" {
+            weatherSymbol = "cloud"
+        } else if weatherCondition == "Cloudy" {
+            weatherSymbol = "cloud"
+        } else if weatherCondition == "Hazy" {
+            weatherSymbol = "sun.haze"
+        } else if weatherCondition == "Scattered Thunderstorms" {
+            weatherSymbol = "cloud.sun.bolt"
+        } else if weatherCondition == "Drizzle" {
+            weatherSymbol = "cloud.drizzle"
+        } else if weatherCondition == "Rain" {
+            weatherSymbol = "cloud.rain"
+        } else if weatherCondition == "Heavy Rain" {
+            weatherSymbol = "cloud.heavyrain"
+        }
+    }
+    
+    func setWeatherSymbolToDailyForecast(weatherCondition: String) -> String {
+        if weatherCondition == "Clear" {
+            return "sun.max"
+        } else if weatherCondition == "Mostly Clear" {
+            return "sun.min"
+        } else if weatherCondition == "Partly Cloudy" {
+            return "cloud.sun"
+        } else if weatherCondition == "Mostly Cloudy" {
+            return "cloud"
+        } else if weatherCondition == "Cloudy" {
+            return "cloud"
+        } else if weatherCondition == "Hazy" {
+            return "sun.haze"
+        } else if weatherCondition == "Scattered Thunderstorms" {
+            return "cloud.sun.bolt"
+        } else if weatherCondition == "Drizzle" {
+            return "cloud.drizzle"
+        } else if weatherCondition == "Rain" {
+            return "cloud.rain"
+        } else if weatherCondition == "Heavy Rain" {
+            return "cloud.heavyrain"
+        }
+        return "sun.max"
     }
     
     func getUserLocation() async {
