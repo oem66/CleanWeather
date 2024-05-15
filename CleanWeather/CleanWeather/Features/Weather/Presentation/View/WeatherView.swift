@@ -20,8 +20,8 @@ struct WeatherView: View {
                     TemperatureChartView(viewModel: viewModel)
                     DailyForecastView(viewModel: viewModel)
                     StatisticsView(viewModel: viewModel)
-                    AirQualityView()
-                        .padding(.bottom, 150)
+//                    AirQualityView()
+//                        .padding(.bottom, 150)
                 }
             }
         }
