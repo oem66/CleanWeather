@@ -65,7 +65,7 @@ struct TemperatureView: View {
             
             Image(systemName: viewModel.weatherSymbol)
                 .resizable()
-                .frame(width: 150, height: 150)
+                .frame(width: 150, height: 120)
                 .foregroundColor(.white)
             
             Text("\(viewModel.weatherData.currentWeather?.temperature.nextUp ?? 0.0, specifier: "%.0f")°C")
