@@ -21,33 +21,45 @@ struct SelectLocationView: View {
                     Text("Select city")
                         .font(.custom("Avenir-Medium", size: 25))
                         .fontWeight(.heavy)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                     Spacer()
                 }
                 .padding(.top, 20)
                 
                 VStack(alignment: .center) {
-                    TextField("Enter city name",
-                              text: $viewModel.cityName,
-                              onCommit: viewModel.fetchCoordinates)
-                    .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    CustomTextField(viewModel: viewModel)
+                    
                     if let coordinates = viewModel.coordinates {
-                        Text("Location: \(viewModel.locationName), coordinates: \(coordinates.latitude) - \(coordinates.longitude)")
-                            .font(.custom("Avenir-Medium", size: 16))
-                            .fontWeight(.bold)
-                            .foregroundColor(.black)
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(4)
-                            .padding()
+                        withAnimation {
+                            HStack {
+                                Spacer()
+                                Text("Location: \(viewModel.locationName), coordinates: \(coordinates.latitude) - \(coordinates.longitude)")
+                                    .font(.custom("Avenir-Medium", size: 16))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .multilineTextAlignment(.leading)
+                                    .lineLimit(4)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 20)
+                                Spacer()
+                            }
+                            .background(.black)
+                            .cornerRadius(10)
+                        }
                     }
                 }
+                .padding(.horizontal, 10)
                 .padding(.vertical, 20)
                 
                 HStack {
                     Spacer()
                     Button {
                         showSheetView.toggle()
+                        if let latitude = viewModel.coordinates?.latitude,
+                           let longitude = viewModel.coordinates?.longitude {
+                            viewModel.getWeatherForNewLocation(location: CLLocation(latitude: latitude,
+                                                                                    longitude: longitude))
+                        }
                     } label: {
                         HStack {
                             Spacer()
@@ -59,14 +71,13 @@ struct SelectLocationView: View {
                             Spacer()
                         }
                         .background(.green)
-                        .cornerRadius(15)
+                        .cornerRadius(10)
                     }
                     Spacer()
                 }
-                .padding(.horizontal, 15)
                 .padding(.bottom, 30)
             }
-            .background(.white)
+            .background(Constants.cardItemBackground)
             .cornerRadius(15)
             .padding(.horizontal, 15)
         }
