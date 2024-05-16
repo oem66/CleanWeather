@@ -23,6 +23,10 @@ struct TemperatureView: View {
                             .fontWeight(.heavy)
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
+                        Spacer()
+                    }
+                    
+                    HStack {
                         Text(viewModel.country)
                             .font(.custom("Avenir-Medium", size: 25))
                             .fontWeight(.bold)
@@ -31,6 +35,7 @@ struct TemperatureView: View {
                             .lineLimit(3)
                         Spacer()
                     }
+                    
                     HStack {
                         Text(viewModel.currentDate)
                             .font(.custom("Avenir-Medium", size: 20))
