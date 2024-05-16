@@ -18,6 +18,11 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     @Published var showLocationSelectionView = false
     @Published var weatherSymbol = "sun.max"
     
+    // Search location properties
+    @Published var cityName = ""
+    @Published var coordinates: CLLocationCoordinate2D?
+    @Published var locationName = ""
+    
     private let useCase: WeatherUseCaseProtocol
     
     private let locationManager = CLLocationManager()
@@ -33,6 +38,21 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
         dateFormatter.locale = Locale(identifier: "en_US")
         
         currentDate = dateFormatter.string(from: Date())
+    }
+    
+    func fetchCoordinates() {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(cityName) { placemarks, error in
+            if let error = error {
+                print("Geocoding failed with error: \(error.localizedDescription)")
+                return
+            }
+            if let placemark = placemarks?.first,
+               let location = placemark.location {
+                self.coordinates = location.coordinate
+                self.locationName = placemark.locality ?? "Unknown Location"
+            }
+        }
     }
     
     private func getWeather(location: CLLocation) async {

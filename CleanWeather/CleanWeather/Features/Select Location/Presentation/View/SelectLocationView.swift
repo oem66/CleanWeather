@@ -7,38 +7,71 @@
 
 import Foundation
 import SwiftUI
+import MapKit
 
 struct SelectLocationView: View {
-    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: WeatherViewModel
-    
-    var backButton: some View {
-        Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-        }) {
-            ZStack {
-                Color(.white)
-                Image(systemName: "chevron.left")
-                    .foregroundColor(Constants.defaultBackground)
-                    .padding(10)
-            }
-            .clipShape(Circle())
-        }
-    }
+    @Binding var showSheetView: Bool
     
     var body: some View {
         VStack {
-            Spacer()
-            HStack {
-                Spacer()
-                Text("Select Location")
-                Spacer()
+            VStack {
+                HStack {
+                    Spacer()
+                    Text("Select city")
+                        .font(.custom("Avenir-Medium", size: 25))
+                        .fontWeight(.heavy)
+                        .foregroundColor(.black)
+                    Spacer()
+                }
+                .padding(.top, 20)
+                
+                VStack(alignment: .center) {
+                    TextField("Enter city name",
+                              text: $viewModel.cityName,
+                              onCommit: viewModel.fetchCoordinates)
+                    .padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    if let coordinates = viewModel.coordinates {
+                        Text("Location: \(viewModel.locationName), coordinates: \(coordinates.latitude) - \(coordinates.longitude)")
+                            .font(.custom("Avenir-Medium", size: 16))
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(4)
+                            .padding()
+                    }
+                }
+                .padding(.vertical, 20)
+                
+                HStack {
+                    Spacer()
+                    Button {
+                        showSheetView.toggle()
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Text("Select")
+                                .font(.custom("Avenir-Medium", size: 20))
+                                .fontWeight(.heavy)
+                                .foregroundColor(.white)
+                                .padding(.vertical, 10)
+                            Spacer()
+                        }
+                        .background(.green)
+                        .cornerRadius(15)
+                    }
+                    Spacer()
+                }
+                .padding(.horizontal, 15)
+                .padding(.bottom, 30)
             }
-            Spacer()
+            .background(.white)
+            .cornerRadius(15)
+            .padding(.horizontal, 15)
         }
-        .background(Constants.defaultBackground)
-        .navigationTitle("Select Location")
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: backButton)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .presentationBackground(.clear.opacity(0.5))
+        .edgesIgnoringSafeArea(.all)
     }
 }

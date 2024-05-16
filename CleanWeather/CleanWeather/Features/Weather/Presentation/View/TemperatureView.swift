@@ -11,6 +11,7 @@ import SwiftUI
 struct TemperatureView: View {
     @ObservedObject var viewModel: WeatherViewModel
     @State private var isAnimating = false
+    @State private var showSheetView = false
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
@@ -44,17 +45,15 @@ struct TemperatureView: View {
                 Spacer()
                 
                 VStack {
-                    NavigationLink(destination: SelectLocationView(viewModel: viewModel),
-                                   isActive: $viewModel.showLocationSelectionView) {
-                        Button {
-                            viewModel.showLocationSelectionView.toggle()
-                        } label: {
-                            Image(systemName: "square.grid.2x2.fill")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .foregroundColor(Constants.customGrayColor)
-                                .padding(15)
-                        }
+                    Button {
+                        //                            viewModel.showLocationSelectionView.toggle()
+                        showSheetView.toggle()
+                    } label: {
+                        Image(systemName: "square.grid.2x2.fill")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(Constants.customGrayColor)
+                            .padding(15)
                     }
                 }
                 .background(Constants.cardItemBackground)
@@ -88,6 +87,10 @@ struct TemperatureView: View {
         .padding(.horizontal, 15)
         .onAppear {
             viewModel.formatDate()
+        }
+        .fullScreenCover(isPresented: $showSheetView) {
+            SelectLocationView(viewModel: viewModel,
+                                 showSheetView: $showSheetView)
         }
     }
 }
