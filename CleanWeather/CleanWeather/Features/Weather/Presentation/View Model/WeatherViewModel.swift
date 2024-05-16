@@ -55,10 +55,21 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
         }
     }
     
-    func getWeatherForNewLocation(location: CLLocation) async {
+    func getWeatherForNewLocation(location: CLLocation) {
         Task {
             let data = await useCase.getWeather(location: location)
             assignValueToWeather(data: data)
+            
+            locationManager.getPlace(for: location) { [weak self] place in
+                guard let self else { return }
+                log.verbose("Country: \(String(describing: place?.country))")
+                log.verbose("City: \(String(describing: place?.locality))")
+                if let country = place?.country,
+                   let city = place?.locality {
+                    self.placemark = "\(city)"
+                    self.country = country
+                }
+            }
         }
     }
     

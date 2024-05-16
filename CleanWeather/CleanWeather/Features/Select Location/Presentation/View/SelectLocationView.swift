@@ -55,6 +55,11 @@ struct SelectLocationView: View {
                     Spacer()
                     Button {
                         showSheetView.toggle()
+                        if let latitude = viewModel.coordinates?.latitude,
+                           let longitude = viewModel.coordinates?.longitude {
+                            viewModel.getWeatherForNewLocation(location: CLLocation(latitude: latitude,
+                                                                                    longitude: longitude))
+                        }
                     } label: {
                         HStack {
                             Spacer()
