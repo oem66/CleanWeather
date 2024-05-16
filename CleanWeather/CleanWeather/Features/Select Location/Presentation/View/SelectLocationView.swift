@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import MapKit
 
 struct SelectLocationView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -28,11 +29,17 @@ struct SelectLocationView: View {
     
     var body: some View {
         VStack {
-            Spacer()
-            HStack {
-                Spacer()
-                Text("Select Location")
-                Spacer()
+            TextField("Enter city name", text: $viewModel.cityName, onCommit: viewModel.fetchCoordinates)
+                .padding()
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            if let coordinates = viewModel.coordinates {
+                Text("Location: \(viewModel.locationName), coordinates: \(coordinates.latitude) - \(coordinates.longitude)")
+                    .font(.custom("Avenir-Medium", size: 16))
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(4)
+                    .padding()
             }
             Spacer()
         }
