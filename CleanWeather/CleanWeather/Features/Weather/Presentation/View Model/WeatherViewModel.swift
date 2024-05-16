@@ -55,6 +55,13 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
         }
     }
     
+    func getWeatherForNewLocation(location: CLLocation) async {
+        Task {
+            let data = await useCase.getWeather(location: location)
+            assignValueToWeather(data: data)
+        }
+    }
+    
     private func getWeather(location: CLLocation) async {
         Task {
             let data = await useCase.getWeather(location: location)
