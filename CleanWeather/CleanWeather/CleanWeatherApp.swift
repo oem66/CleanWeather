@@ -10,11 +10,13 @@ import SwiftUI
 @main
 struct CleanWeatherApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    let persistenceController = CoreDataManager.shared
 
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 WeatherView()
+                    .environment(\.managedObjectContext, persistenceController.writeMOC)
             }
         }
     }

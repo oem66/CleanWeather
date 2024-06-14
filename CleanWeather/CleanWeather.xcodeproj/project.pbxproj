@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3E0664032B8BEC5F00AC77CE /* WeatherCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0664022B8BEC5F00AC77CE /* WeatherCondition.swift */; };
 		3E0C759A2BF62A3A00E937BF /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C75992BF62A3A00E937BF /* CustomTextField.swift */; };
+		3E11B0A72C1C5F7D00A09377 /* CleanWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E11B0A52C1C5F7D00A09377 /* CleanWeather.xcdatamodeld */; };
 		3E2788FB2B92174C00359E75 /* WeatherConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2788FA2B92174C00359E75 /* WeatherConditions.swift */; };
 		3E2D29892B9A402300127481 /* AirQualityRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D29882B9A402300127481 /* AirQualityRemoteRepository.swift */; };
 		3E2D298C2B9A4A3900127481 /* AirQualityUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D298B2B9A4A3900127481 /* AirQualityUseCase.swift */; };
@@ -23,7 +24,6 @@
 		3E7BE8982B8D0E9B00319DFE /* StatisticsCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BE8972B8D0E9B00319DFE /* StatisticsCondition.swift */; };
 		3E8978AB2B89F1DF0061D83F /* CleanWeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8978AA2B89F1DF0061D83F /* CleanWeatherApp.swift */; };
 		3E8978AD2B89F1DF0061D83F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8978AC2B89F1DF0061D83F /* Persistence.swift */; };
-		3E8978B02B89F1DF0061D83F /* CleanWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E8978AE2B89F1DF0061D83F /* CleanWeather.xcdatamodeld */; };
 		3E8978B22B89F1DF0061D83F /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8978B12B89F1DF0061D83F /* WeatherView.swift */; };
 		3E8978B42B89F1E00061D83F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E8978B32B89F1E00061D83F /* Assets.xcassets */; };
 		3E8978B82B89F1E00061D83F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E8978B72B89F1E00061D83F /* Preview Assets.xcassets */; };
@@ -86,6 +86,7 @@
 /* Begin PBXFileReference section */
 		3E0664022B8BEC5F00AC77CE /* WeatherCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCondition.swift; sourceTree = "<group>"; };
 		3E0C75992BF62A3A00E937BF /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		3E11B0A62C1C5F7D00A09377 /* CleanWeather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CleanWeather.xcdatamodel; sourceTree = "<group>"; };
 		3E2788FA2B92174C00359E75 /* WeatherConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConditions.swift; sourceTree = "<group>"; };
 		3E2D29882B9A402300127481 /* AirQualityRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityRemoteRepository.swift; sourceTree = "<group>"; };
 		3E2D298B2B9A4A3900127481 /* AirQualityUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityUseCase.swift; sourceTree = "<group>"; };
@@ -101,7 +102,6 @@
 		3E8978A72B89F1DF0061D83F /* CleanWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E8978AA2B89F1DF0061D83F /* CleanWeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanWeatherApp.swift; sourceTree = "<group>"; };
 		3E8978AC2B89F1DF0061D83F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		3E8978AF2B89F1DF0061D83F /* CleanWeather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CleanWeather.xcdatamodel; sourceTree = "<group>"; };
 		3E8978B12B89F1DF0061D83F /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		3E8978B32B89F1E00061D83F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E8978B52B89F1E00061D83F /* CleanWeather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CleanWeather.entitlements; sourceTree = "<group>"; };
@@ -359,7 +359,7 @@
 			children = (
 				3EE891162B8E6B6A009DD07D /* Lottie Animations */,
 				3E8978B32B89F1E00061D83F /* Assets.xcassets */,
-				3E8978AE2B89F1DF0061D83F /* CleanWeather.xcdatamodeld */,
+				3E11B0A52C1C5F7D00A09377 /* CleanWeather.xcdatamodeld */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -780,7 +780,6 @@
 				3EE891152B8E6B3E009DD07D /* LottieView.swift in Sources */,
 				3E7BE8952B8D095400319DFE /* StatisticsView.swift in Sources */,
 				3EE891182B8E724F009DD07D /* LocationManager.swift in Sources */,
-				3E8978B02B89F1DF0061D83F /* CleanWeather.xcdatamodeld in Sources */,
 				3E0C759A2BF62A3A00E937BF /* CustomTextField.swift in Sources */,
 				3ED9599B2BC3DB98008BE22D /* TemperatureChartView.swift in Sources */,
 				3E2D29902B9A559A00127481 /* AirQualityRepositoryProtocol.swift in Sources */,
@@ -792,6 +791,7 @@
 				3EDDDA2E2B98F5E5009F5722 /* AirQualityUseCaseProtocol.swift in Sources */,
 				3EE8910F2B8E61BE009DD07D /* AppDelegate.swift in Sources */,
 				3E8978EF2B8A318D0061D83F /* HTTPMethod.swift in Sources */,
+				3E11B0A72C1C5F7D00A09377 /* CleanWeather.xcdatamodeld in Sources */,
 				3EDDDA1D2B98EAEB009F5722 /* AirQualityService.swift in Sources */,
 				3E7BE8932B8D04EE00319DFE /* DailyForecastView.swift in Sources */,
 				3EF3D3C22C1C430800D40042 /* WeatherDB.swift in Sources */,
@@ -1225,13 +1225,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		3E8978AE2B89F1DF0061D83F /* CleanWeather.xcdatamodeld */ = {
+		3E11B0A52C1C5F7D00A09377 /* CleanWeather.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				3E8978AF2B89F1DF0061D83F /* CleanWeather.xcdatamodel */,
+				3E11B0A62C1C5F7D00A09377 /* CleanWeather.xcdatamodel */,
 			);
-			currentVersion = 3E8978AF2B89F1DF0061D83F /* CleanWeather.xcdatamodel */;
-			path = CleanWeather.xcdatamodeld;
+			currentVersion = 3E11B0A62C1C5F7D00A09377 /* CleanWeather.xcdatamodel */;
+			name = CleanWeather.xcdatamodeld;
+			path = "/Users/omersmac/Desktop/CleanWeather/CleanWeather/CleanWeather/Supporting Files/CleanWeather.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct WeatherView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @StateObject private var viewModel = WeatherViewModel()
     
     var body: some View {

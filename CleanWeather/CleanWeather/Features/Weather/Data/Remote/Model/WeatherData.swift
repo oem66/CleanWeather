@@ -160,3 +160,25 @@ struct Severity: Decodable {
 struct Urgency: Decodable {
     var value: String
 }
+
+extension WeatherData: DomainModel {
+
+    typealias DomainModelType = Weather
+
+    func toDomain() -> Weather {
+        Weather(asOf: currentWeather?.asOf ?? Date(),
+                cloudCover: currentWeather?.cloudCover ?? 0.0,
+                conditionCode: currentWeather?.conditionCode ?? "",
+                daylight: currentWeather?.daylight ?? false,
+                humidity: currentWeather?.humidity ?? 0.0,
+                precipitationIntensity: currentWeather?.precipitationIntensity ?? 0.0,
+                pressure: currentWeather?.pressure ?? 0.0,
+                temperature: currentWeather?.temperature ?? 0.0,
+                temperatureApparent: currentWeather?.temperatureApparent ?? 0.0,
+                uvIndex: currentWeather?.uvIndex ?? 0,
+                visibility: currentWeather?.visibility ?? 0.0,
+                windDirection: currentWeather?.windDirection ?? 0,
+                windGust: currentWeather?.windGust ?? 0.0,
+                windSpeed: currentWeather?.windSpeed ?? 0.0)
+    }
+}
