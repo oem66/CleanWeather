@@ -13,6 +13,7 @@ let log = SwiftyBeaver.self
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        loadStores()
         setupSwiftyBeaver()
         return true
     }
@@ -27,5 +28,9 @@ extension AppDelegate {
 #else
         log.removeAllDestinations()
 #endif
+    }
+    
+    func loadStores() {
+        CoreDataManager.shared.loadStores()
     }
 }

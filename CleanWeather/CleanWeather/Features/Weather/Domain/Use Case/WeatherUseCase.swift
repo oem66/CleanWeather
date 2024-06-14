@@ -15,4 +15,8 @@ final class WeatherUseCase: WeatherUseCaseProtocol {
         log.info("Use Case")
         return await repository.getWeather(location: location)
     }
+    
+    func getOfflineWeather() -> WeatherData {
+        return repository.getOfflineWeather()
+    }
 }

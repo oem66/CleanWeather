@@ -11,6 +11,7 @@ import WeatherKit
 
 final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var weatherData = WeatherData()
+    @Published var offlineWeatherData = WeatherData()
     @Published var location = CLLocation()
     @Published var placemark = ""
     @Published var country = ""
@@ -71,6 +72,10 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
                 }
             }
         }
+    }
+    
+    func getOfflineWeather() {
+        offlineWeatherData = useCase.getOfflineWeather()
     }
     
     private func getWeather(location: CLLocation) async {

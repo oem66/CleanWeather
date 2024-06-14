@@ -10,4 +10,5 @@ import CoreLocation
 
 protocol WeatherRepositoryProtocol {
     func getWeather(location: CLLocation) async -> WeatherData
+    func getOfflineWeather() -> WeatherData
 }
