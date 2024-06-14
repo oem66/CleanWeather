@@ -60,6 +60,7 @@
 		3EE891122B8E68FF009DD07D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3EE891112B8E68FF009DD07D /* Lottie */; };
 		3EE891152B8E6B3E009DD07D /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE891142B8E6B3E009DD07D /* LottieView.swift */; };
 		3EE891182B8E724F009DD07D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE891172B8E724F009DD07D /* LocationManager.swift */; };
+		3EF3D3BD2C1C3D3500D40042 /* WeatherLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF3D3BC2C1C3D3500D40042 /* WeatherLocalRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,7 @@
 		3EE891142B8E6B3E009DD07D /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		3EE891172B8E724F009DD07D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		3EEB57D82B8B43B9003879F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3EF3D3BC2C1C3D3500D40042 /* WeatherLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocalRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,6 +467,8 @@
 		3E8979002B8A379B0061D83F /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				3EF3D3BB2C1C3D2500D40042 /* Models */,
+				3EF3D3BC2C1C3D3500D40042 /* WeatherLocalRepository.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -601,6 +605,13 @@
 			children = (
 			);
 			path = "Lottie Animations";
+			sourceTree = "<group>";
+		};
+		3EF3D3BB2C1C3D2500D40042 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -764,6 +775,7 @@
 				3E89790B2B8A44AC0061D83F /* WeatherRemoteRepository.swift in Sources */,
 				3E8978AB2B89F1DF0061D83F /* CleanWeatherApp.swift in Sources */,
 				3E8979082B8A43A60061D83F /* WeatherData.swift in Sources */,
+				3EF3D3BD2C1C3D3500D40042 /* WeatherLocalRepository.swift in Sources */,
 				3E2788FB2B92174C00359E75 /* WeatherConditions.swift in Sources */,
 				3E8978F72B8A33410061D83F /* AppleWeatherService.swift in Sources */,
 				3E2D298E2B9A558C00127481 /* AirQualityRepository.swift in Sources */,
