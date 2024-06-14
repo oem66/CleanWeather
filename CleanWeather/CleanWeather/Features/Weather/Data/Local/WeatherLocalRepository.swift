@@ -20,7 +20,7 @@ final class WeatherLocalRepository {
                 writeMOC.delete(lastWeather)
             }
             
-            let newWeather = WeatherDB.insert(into: writeMOC, data: data)
+            WeatherDB.insert(into: writeMOC, data: data)
             
             let status = writeMOC.saveOrRollback()
             status ? debugPrint("Successfull Core Data Operation!") : debugPrint(CleanWeatherError.failedDatabaseUpdate)
@@ -28,7 +28,29 @@ final class WeatherLocalRepository {
     }
     
     func getOfflineWeather() -> WeatherData {
-        return WeatherData()
+        let writeMOC = coreDataManager.writeMOC
+        var weatherOffline = WeatherData()
+        writeMOC.perform { [weak self] in
+            guard let self = self else { return }
+            let weather = self.fetchWeather(context: writeMOC)
+            let weatherData = WeatherData(currentWeather: CurrentWeather(asOf: weather?.asOf ?? Date(),
+                                                                         cloudCover: weather?.cloudCover ?? 0.0,
+                                                                         conditionCode: weather?.conditionCode ?? "",
+                                                                         daylight: weather?.daylight ?? false,
+                                                                         humidity: weather?.humidity ?? 0.0,
+                                                                         precipitationIntensity: weather?.precipitationIntensity ?? 0.0,
+                                                                         pressure: weather?.pressure ?? 0.0,
+                                                                         temperature: weather?.temperature ?? 0.0,
+                                                                         temperatureApparent: weather?.temperatureApparent ?? 0.0,
+                                                                         uvIndex: weather?.uvIndex ?? 0,
+                                                                         visibility: weather?.visibility ?? 0.0,
+                                                                         windDirection: weather?.windDirection ?? 0,
+                                                                         windGust: weather?.windGust ?? 0.0,
+                                                                         windSpeed: weather?.windSpeed ?? 0.0))
+            weatherOffline = weatherData
+        }
+        return weatherOffline
+//        return WeatherData()
     }
 }
 

@@ -21,4 +21,8 @@ final class WeatherRepository: WeatherRepositoryProtocol {
         
 //        return await remoteRepository.getWeather(location: location)
     }
+    
+    func getOfflineWeather() -> WeatherData {
+        return localRepository.getOfflineWeather()
+    }
 }
