@@ -9,8 +9,9 @@ import Foundation
 import CoreData
 
 final class WeatherLocalRepository {
+    let coreDataManager = CoreDataManager.shared
     
-    func getWeather() {
+    func getWeather() -> [WeatherData] {
         
     }
 }
