@@ -75,7 +75,10 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     }
     
     func getOfflineWeather() {
-        offlineWeatherData = useCase.getOfflineWeather()
+        useCase.getOfflineWeather { [weak self] weatherData in
+            guard let self = self else { return }
+            self.offlineWeatherData = weatherData
+        }
     }
     
     private func getWeather(location: CLLocation) async {
