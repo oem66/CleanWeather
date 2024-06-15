@@ -38,10 +38,7 @@ struct WeatherView: View {
         } else {
             VStack(alignment: .center) {
                 Spacer()
-                Text("\(viewModel.offlineWeatherData.currentWeather?.temperature)")
-                    .font(.custom("Avenir-Medium", size: 25))
-                    .fontWeight(.heavy)
-                    .foregroundColor(.white)
+                OfflineTemperatureView(viewModel: viewModel)
                 Spacer()
             }
             .onAppear {
