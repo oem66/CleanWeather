@@ -27,9 +27,8 @@ final class WeatherLocalRepository {
         }
     }
     
-    func getOfflineWeather() -> WeatherData {
+    func getOfflineWeather(completion: @escaping (WeatherData) -> Void) {
         let writeMOC = coreDataManager.writeMOC
-        var weatherOffline = WeatherData()
         writeMOC.perform { [weak self] in
             guard let self = self else { return }
             let weather = self.fetchWeather(context: writeMOC)
@@ -47,10 +46,8 @@ final class WeatherLocalRepository {
                                                                          windDirection: weather?.windDirection ?? 0,
                                                                          windGust: weather?.windGust ?? 0.0,
                                                                          windSpeed: weather?.windSpeed ?? 0.0))
-            weatherOffline = weatherData
+            completion(weatherData)
         }
-        return weatherOffline
-//        return WeatherData()
     }
 }
 

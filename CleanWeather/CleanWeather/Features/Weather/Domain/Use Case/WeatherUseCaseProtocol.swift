@@ -10,5 +10,5 @@ import CoreLocation
 
 protocol WeatherUseCaseProtocol {
     func getWeather(location: CLLocation) async -> WeatherData
-    func getOfflineWeather() -> WeatherData
+    func getOfflineWeather(completion: @escaping (WeatherData) -> Void)
 }

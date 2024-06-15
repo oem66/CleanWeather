@@ -16,7 +16,9 @@ final class WeatherUseCase: WeatherUseCaseProtocol {
         return await repository.getWeather(location: location)
     }
     
-    func getOfflineWeather() -> WeatherData {
-        return repository.getOfflineWeather()
+    func getOfflineWeather(completion: @escaping (WeatherData) -> Void) {
+        return repository.getOfflineWeather { data in
+            completion(data)
+        }
     }
 }

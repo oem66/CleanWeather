@@ -38,11 +38,11 @@ struct WeatherView: View {
         } else {
             VStack(alignment: .center) {
                 Spacer()
-                Text("\(viewModel.offlineWeatherData.currentWeather?.pressure)")
-                    .font(.custom("Avenir-Medium", size: 20))
-                    .fontWeight(.heavy)
-                    .foregroundColor(.black)
+                OfflineTemperatureView(viewModel: viewModel)
                 Spacer()
+            }
+            .onAppear {
+                viewModel.getOfflineWeather()
             }
         }
     }

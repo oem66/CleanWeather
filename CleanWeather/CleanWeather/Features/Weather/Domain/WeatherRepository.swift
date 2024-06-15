@@ -22,7 +22,9 @@ final class WeatherRepository: WeatherRepositoryProtocol {
 //        return await remoteRepository.getWeather(location: location)
     }
     
-    func getOfflineWeather() -> WeatherData {
-        return localRepository.getOfflineWeather()
+    func getOfflineWeather(completion: @escaping (WeatherData) -> Void) {
+        localRepository.getOfflineWeather { data in
+            completion(data)
+        }
     }
 }
