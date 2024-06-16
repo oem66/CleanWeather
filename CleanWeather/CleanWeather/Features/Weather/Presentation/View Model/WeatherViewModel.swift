@@ -173,6 +173,9 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
                let city = place?.locality {
                 self.placemark = "\(city)"
                 self.country = country
+                
+                saveLocationOffline(data: LocationData(city: placemark,
+                                                       country: country))
             }
         }
         

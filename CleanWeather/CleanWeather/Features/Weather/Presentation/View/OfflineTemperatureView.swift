@@ -16,7 +16,7 @@ struct OfflineTemperatureView: View {
             HStack {
                 VStack {
                     HStack {
-                        Text(viewModel.placemark + ", ")
+                        Text(viewModel.offlineCityName + ", ")
                             .font(.custom("Avenir-Medium", size: 25))
                             .fontWeight(.heavy)
                             .foregroundColor(.white)
@@ -25,7 +25,7 @@ struct OfflineTemperatureView: View {
                     }
                     
                     HStack {
-                        Text(viewModel.country)
+                        Text(viewModel.offlineCountryName)
                             .font(.custom("Avenir-Medium", size: 25))
                             .fontWeight(.bold)
                             .foregroundColor(Constants.customGrayColor)

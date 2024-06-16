@@ -43,6 +43,7 @@ struct WeatherView: View {
             }
             .onAppear {
                 viewModel.getOfflineWeather()
+                viewModel.getOfflineLocation()
             }
         }
     }
