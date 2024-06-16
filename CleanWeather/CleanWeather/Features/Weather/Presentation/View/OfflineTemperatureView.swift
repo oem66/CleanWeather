@@ -13,42 +13,42 @@ struct OfflineTemperatureView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
-//            HStack {
-//                VStack {
-//                    HStack {
-//                        Text(viewModel.placemark + ", ")
-//                            .font(.custom("Avenir-Medium", size: 25))
-//                            .fontWeight(.heavy)
-//                            .foregroundColor(.white)
-//                            .multilineTextAlignment(.center)
-//                        Spacer()
-//                    }
-//                    
-//                    HStack {
-//                        Text(viewModel.country)
-//                            .font(.custom("Avenir-Medium", size: 25))
-//                            .fontWeight(.bold)
-//                            .foregroundColor(Constants.customGrayColor)
-//                            .multilineTextAlignment(.center)
-//                            .lineLimit(3)
-//                        Spacer()
-//                    }
-//                    
-//                    HStack {
-//                        Text(viewModel.currentDate)
-//                            .font(.custom("Avenir-Medium", size: 20))
-//                            .fontWeight(.bold)
-//                            .foregroundColor(Constants.customGrayColor)
-//                            .multilineTextAlignment(.center)
-//                            .lineLimit(3)
-//                        Spacer()
-//                    }
-//                }
-//                
-//                Spacer()
-//            }
-//            .padding(.top, 20)
-//            .padding(.bottom, 30)
+            HStack {
+                VStack {
+                    HStack {
+                        Text(viewModel.placemark + ", ")
+                            .font(.custom("Avenir-Medium", size: 25))
+                            .fontWeight(.heavy)
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                        Spacer()
+                    }
+                    
+                    HStack {
+                        Text(viewModel.country)
+                            .font(.custom("Avenir-Medium", size: 25))
+                            .fontWeight(.bold)
+                            .foregroundColor(Constants.customGrayColor)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(3)
+                        Spacer()
+                    }
+                    
+                    HStack {
+                        Text(viewModel.currentDate)
+                            .font(.custom("Avenir-Medium", size: 20))
+                            .fontWeight(.bold)
+                            .foregroundColor(Constants.customGrayColor)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(3)
+                        Spacer()
+                    }
+                }
+                
+                Spacer()
+            }
+            .padding(.top, 20)
+            .padding(.bottom, 30)
             
             Image(systemName: viewModel.weatherSymbol)
                 .resizable()
