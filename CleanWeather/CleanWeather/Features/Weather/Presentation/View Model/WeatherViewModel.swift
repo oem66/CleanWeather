@@ -26,6 +26,10 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     @Published var coordinates: CLLocationCoordinate2D?
     @Published var locationName = ""
     
+    // Offline location properties
+    @Published var offlineCityName = ""
+    @Published var offlineCountryName = ""
+    
     private let useCase: WeatherUseCaseProtocol
     
     private let locationManager = CLLocationManager()
@@ -194,7 +198,13 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     }
     
     func getOfflineLocation() {
-        
+        let writeMOC = coreDataManager.writeMOC
+        writeMOC.perform { [weak self] in
+            guard let self = self else { return }
+            let location = self.fetchLocation(context: writeMOC)
+            self.offlineCityName = location?.city ?? "No City"
+            self.offlineCountryName = location?.country ?? "No Country"
+        }
     }
 }
 
