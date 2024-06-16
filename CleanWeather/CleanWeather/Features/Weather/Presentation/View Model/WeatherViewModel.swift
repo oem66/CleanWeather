@@ -8,8 +8,10 @@
 import Foundation
 import CoreLocation
 import WeatherKit
+import CoreData
 
 final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    let coreDataManager = CoreDataManager.shared
     @Published var weatherData = WeatherData()
     @Published var offlineWeatherData = WeatherData()
     @Published var location = CLLocation()
@@ -23,6 +25,10 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     @Published var cityName = ""
     @Published var coordinates: CLLocationCoordinate2D?
     @Published var locationName = ""
+    
+    // Offline location properties
+    @Published var offlineCityName = ""
+    @Published var offlineCountryName = ""
     
     private let useCase: WeatherUseCaseProtocol
     
@@ -167,11 +173,54 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
                let city = place?.locality {
                 self.placemark = "\(city)"
                 self.country = country
+                
+                saveLocationOffline(data: LocationData(city: placemark,
+                                                       country: country))
             }
         }
         
         Task {
             await getWeather(location: location)
+        }
+    }
+    
+    private func saveLocationOffline(data: LocationData) {
+        let writeMOC = self.coreDataManager.writeMOC
+        writeMOC.perform { [weak self] in
+            guard let self = self else { return }
+            let lastWeather = self.fetchLocation(context: writeMOC)
+            if let lastWeather {
+                writeMOC.delete(lastWeather)
+            }
+            
+            LocationDB.insert(into: writeMOC, data: data)
+            
+            let status = writeMOC.saveOrRollback()
+            status ? debugPrint("Successfull Core Data Operation!") : debugPrint(CleanWeatherError.failedDatabaseUpdate)
+        }
+    }
+    
+    func getOfflineLocation() {
+        let writeMOC = coreDataManager.writeMOC
+        writeMOC.perform { [weak self] in
+            guard let self = self else { return }
+            let location = self.fetchLocation(context: writeMOC)
+            self.offlineCityName = location?.city ?? "No City"
+            self.offlineCountryName = location?.country ?? "No Country"
+        }
+    }
+}
+
+// MARK: - Private methods
+private extension WeatherViewModel {
+    func fetchLocation(context: NSManagedObjectContext) -> LocationDB? {
+        let request: NSFetchRequest<LocationDB> = LocationDB.fetchRequest() as! NSFetchRequest<LocationDB>
+        do {
+            let results = try context.fetch(request)
+            return results.first // Return the first WeatherDB object or nil if empty
+        } catch {
+            print("Failed to fetch weather data: \(error)")
+            return nil
         }
     }
 }

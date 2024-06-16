@@ -3,6 +3,10 @@
     <entity name="Item" representedClassName=".Item" syncable="YES">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
+    <entity name="LocationDB" representedClassName=".LocationDB" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Test" representedClassName=".Test" syncable="YES"/>
     <entity name="WeatherDB" representedClassName=".WeatherDB" syncable="YES">
         <attribute name="asOf" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
