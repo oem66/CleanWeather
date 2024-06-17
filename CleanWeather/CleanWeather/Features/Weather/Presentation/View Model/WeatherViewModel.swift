@@ -205,8 +205,10 @@ final class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
         writeMOC.perform { [weak self] in
             guard let self = self else { return }
             let location = self.fetchLocation(context: writeMOC)
-            self.offlineCityName = location?.city ?? "No City"
-            self.offlineCountryName = location?.country ?? "No Country"
+            if let location {
+                self.offlineCityName = location.city
+                self.offlineCountryName = location.country
+            }
         }
     }
 }

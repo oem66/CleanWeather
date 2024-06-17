@@ -36,15 +36,11 @@ struct WeatherView: View {
                 }
             }
         } else {
-            VStack(alignment: .center) {
-                Spacer()
-                OfflineTemperatureView(viewModel: viewModel)
-                Spacer()
-            }
-            .onAppear {
-                viewModel.getOfflineWeather()
-                viewModel.getOfflineLocation()
-            }
+            OfflineTemperatureView(viewModel: viewModel)
+                .onAppear {
+                    viewModel.getOfflineWeather()
+                    viewModel.getOfflineLocation()
+                }
         }
     }
 }

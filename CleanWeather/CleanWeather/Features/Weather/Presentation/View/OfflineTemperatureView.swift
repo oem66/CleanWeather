@@ -13,6 +13,7 @@ struct OfflineTemperatureView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
+            Spacer()
             HStack {
                 VStack {
                     HStack {
@@ -49,6 +50,7 @@ struct OfflineTemperatureView: View {
             }
             .padding(.top, 20)
             .padding(.bottom, 30)
+            .padding(.horizontal, 15)
             
             Image(systemName: viewModel.weatherSymbol)
                 .resizable()
@@ -71,7 +73,9 @@ struct OfflineTemperatureView: View {
 //                .font(.custom("Avenir-Medium", size: 20))
 //                .fontWeight(.bold)
 //                .foregroundColor(.white)
+            Spacer()
         }
-        .padding(.horizontal, 15)
+        .edgesIgnoringSafeArea(.all)
+        .background(Constants.defaultBackground)
     }
 }
