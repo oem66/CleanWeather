@@ -1,4 +1,5 @@
 CleanWeather 🌤️
+
 A modern iOS weather application built with Apple WeatherKit and Clean Architecture principles, featuring MVVM pattern in the presentation layer.
 📱 Features
 
