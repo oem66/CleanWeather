@@ -37,6 +37,28 @@ final class AppleWeatherService: AppleWeatherServiceProtocol {
                                                                  temperatureMax: forecast.highTemperature.value,
                                                                  temperatureMin: forecast.lowTemperature.value))
             }
+
+            var hourWeatherConditions = [HourWeatherConditions]()
+            for forecast in result.hourlyForecast {
+                hourWeatherConditions.append(HourWeatherConditions(cloudCover: forecast.cloudCover,
+                                                                   conditionCode: forecast.condition.description,
+                                                                   daylight: forecast.isDaylight,
+                                                                   forecastStart: forecast.date,
+                                                                   humidity: forecast.humidity,
+                                                                   precipitationChance: forecast.precipitationChance,
+                                                                   precipitationType: PrecipitationType(value: forecast.condition.description),
+                                                                   pressure: forecast.pressure.value,
+                                                                   pressureTrend: forecast.pressureTrend,
+                                                                   snowfallIntensity: 0.0,
+                                                                   temperature: forecast.temperature.value,
+                                                                   temperatureApparent: forecast.apparentTemperature.value,
+                                                                   uvIndex: forecast.uvIndex.value,
+                                                                   visibility: forecast.visibility.value,
+                                                                   windDirection: Int(forecast.wind.direction.value),
+                                                                   windGust: forecast.wind.gust?.value ?? 0.0,
+                                                                   windSpeed: forecast.wind.speed.value,
+                                                                   precipitationAmount: 0.0))
+            }
             
             let weatherData = WeatherData(currentWeather: CurrentWeather(asOf: result.currentWeather.date,
                                                                          cloudCover: result.currentWeather.cloudCover,
@@ -53,7 +75,8 @@ final class AppleWeatherService: AppleWeatherServiceProtocol {
                                                                          windGust: result.currentWeather.wind.gust?.value ?? 0.0,
                                                                          windSpeed: result.currentWeather.wind.speed.value),
                                           forecastDaily: DailyForecast(days: dayWeatherConditions,
-                                                                       learnMoreURL: ""))
+                                                                       learnMoreURL: ""),
+                                          forecastHourly: HourlyForecast(hours: hourWeatherConditions))
             log.info("Service Weather data \(weatherData)")
             return weatherData
         } catch {

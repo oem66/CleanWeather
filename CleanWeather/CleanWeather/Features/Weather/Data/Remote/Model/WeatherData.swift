@@ -8,7 +8,7 @@
 import Foundation
 import WeatherKit
 
-struct WeatherData: Decodable {
+struct WeatherData: Decodable, Sendable {
     var currentWeather: CurrentWeather?
     var forecastDaily: DailyForecast?
     var forecastHourly: HourlyForecast?
@@ -17,7 +17,7 @@ struct WeatherData: Decodable {
 }
 
 // MARK: - Current Weather
-struct CurrentWeather: Decodable {
+struct CurrentWeather: Decodable, Sendable {
     var asOf: Date // The date and time.
     var cloudCover: Double // The percentage of the sky covered with clouds during the period, from 0 to 1.
     var conditionCode: String // An enumeration value indicating the condition at the time.
@@ -35,12 +35,12 @@ struct CurrentWeather: Decodable {
 }
 
 // MARK: - Daily Forecast
-struct DailyForecast: Hashable, Decodable {
+struct DailyForecast: Hashable, Decodable, Sendable {
     var days: [DayWeatherConditions]
     var learnMoreURL: String
 }
 
-struct DayWeatherConditions: Hashable, Decodable {
+struct DayWeatherConditions: Hashable, Decodable, Sendable {
     var conditionCode: String
     var forecastStart: Date?
     var maxUvIndex: Int
@@ -69,20 +69,20 @@ struct DayWeatherConditions: Hashable, Decodable {
 //    var windSpeed: Double
 //}
 
-struct MoonPhase: Hashable, Decodable {
+struct MoonPhase: Hashable, Decodable, Sendable {
     var value: String
 }
 
-struct PrecipitationType: Decodable {
+struct PrecipitationType: Decodable, Sendable {
     var value: String
 }
 
 // MARK: - Hourly Forecast
-struct HourlyForecast: Decodable {
+struct HourlyForecast: Decodable, Sendable {
     var hours: [HourWeatherConditions]
 }
 
-struct HourWeatherConditions: Decodable {
+struct HourWeatherConditions: Decodable, Sendable {
     var cloudCover: Double
     var conditionCode: String
     var daylight: Bool
@@ -104,20 +104,20 @@ struct HourWeatherConditions: Decodable {
 }
 
 // MARK: - Next Hour Forecast
-struct NextHourForecast: Decodable {
+struct NextHourForecast: Decodable, Sendable {
     var forecastEnd: Date
     var forecastStart: Date
     var minutes: ForecastMinute
     var summary: ForecastPeriodSummary
 }
 
-struct ForecastMinute: Decodable {
+struct ForecastMinute: Decodable, Sendable {
     var precipitationChance: Double
     var precipitationIntensity: Double
     var startTime: Date
 }
 
-struct ForecastPeriodSummary: Decodable {
+struct ForecastPeriodSummary: Decodable, Sendable {
     var condition: PrecipitationType
     var endTime: Date
     var precipitationChance: Double
@@ -126,12 +126,12 @@ struct ForecastPeriodSummary: Decodable {
 }
 
 // MARK: Weather Alert
-struct WeatherAlertCollection: Decodable {
+struct WeatherAlertCollection: Decodable, Sendable {
     var alerts: [WeatherAlertSummary]
     var detailsUrl: String
 }
 
-struct WeatherAlertSummary: Decodable {
+struct WeatherAlertSummary: Decodable, Sendable {
     var areaId: String
     var areaName: String
     var certainty: Certainty
@@ -149,15 +149,15 @@ struct WeatherAlertSummary: Decodable {
     var urgency: Urgency
 }
 
-struct Certainty: Decodable {
+struct Certainty: Decodable, Sendable {
     var value: String
 }
 
-struct Severity: Decodable {
+struct Severity: Decodable, Sendable {
     var value: String
 }
 
-struct Urgency: Decodable {
+struct Urgency: Decodable, Sendable {
     var value: String
 }
 

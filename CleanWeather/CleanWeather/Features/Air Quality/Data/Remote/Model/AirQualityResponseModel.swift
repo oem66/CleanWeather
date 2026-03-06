@@ -7,26 +7,26 @@
 
 import Foundation
 
-struct AirQualityResponseModel: Decodable {
+struct AirQualityResponseModel: Decodable, Sendable {
     var coord: Coordinates?
     var list: [AirQuality]?
 }
 
-struct Coordinates: Decodable {
+struct Coordinates: Decodable, Sendable {
     var lat: Double
     var lon: Double
 }
 
-struct AirQuality: Decodable {
+struct AirQuality: Decodable, Sendable {
     var main: MainAQI?
     var components: AQIComponents?
 }
 
-struct MainAQI: Decodable {
+struct MainAQI: Decodable, Sendable {
     var aqi: Int
 }
 
-struct AQIComponents: Decodable {
+struct AQIComponents: Decodable, Sendable {
     var co: Double
     var no: Double
     var no2: Double

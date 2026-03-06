@@ -18,5 +18,7 @@
 		<string>MKDirectionsModeOther</string>
 		<string>MKDirectionsModePedestrian</string>
 	</array>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 </dict>
 </plist>

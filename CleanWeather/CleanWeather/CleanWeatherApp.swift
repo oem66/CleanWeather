@@ -14,10 +14,32 @@ struct CleanWeatherApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                WeatherView()
-                    .environment(\.managedObjectContext, persistenceController.writeMOC)
-            }
+            MainTabView()
+                .environment(\.managedObjectContext, persistenceController.writeMOC)
         }
+    }
+}
+
+private struct MainTabView: View {
+    @StateObject private var cityExplorerViewModel = CityExplorerViewModel()
+
+    var body: some View {
+        TabView {
+            WeatherView()
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass.circle.fill")
+                }
+
+            ClimateMapView(viewModel: cityExplorerViewModel)
+                .tabItem {
+                    Label("Map", systemImage: "map.fill")
+                }
+
+            MultipleCitiesView(viewModel: cityExplorerViewModel)
+                .tabItem {
+                    Label("Cities", systemImage: "building.2.crop.circle.fill")
+                }
+        }
+        .tint(.white)
     }
 }

@@ -10,72 +10,93 @@ import SwiftUI
 
 struct OfflineTemperatureView: View {
     @ObservedObject var viewModel: WeatherViewModel
-    
+
+    private var theme: WeatherSceneTheme {
+        WeatherSceneTheme(
+            condition: viewModel.offlineWeatherData.currentWeather?.conditionCode ?? "",
+            daylight: viewModel.offlineWeatherData.currentWeather?.daylight ?? true
+        )
+    }
+
+    private var temperatureText: String {
+        guard let temperature = viewModel.offlineWeatherData.currentWeather?.temperature else {
+            return "--°"
+        }
+
+        return "\(Int(temperature.rounded()))°"
+    }
+
     var body: some View {
-        VStack(alignment: .center, spacing: 15) {
-            Spacer()
-            HStack {
-                VStack {
-                    HStack {
-                        Text(viewModel.offlineCityName + ", ")
-                            .font(.custom("Avenir-Medium", size: 25))
-                            .fontWeight(.heavy)
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.center)
-                        Spacer()
+        ZStack {
+            LinearGradient(
+                colors: [theme.skyTop, theme.skyBottom, theme.horizon],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+
+            Circle()
+                .fill(theme.glow.opacity(0.22))
+                .frame(width: 320, height: 320)
+                .blur(radius: 50)
+                .offset(x: -100, y: -260)
+
+            VStack(spacing: 22) {
+                Spacer()
+
+                VStack(alignment: .leading, spacing: 18) {
+                    Text(viewModel.offlineCityName.isEmpty ? "Offline mode" : viewModel.offlineCityName)
+                        .font(.system(size: 32, weight: .black, design: .rounded))
+                        .foregroundStyle(.white)
+
+                    Text(viewModel.offlineCountryName.isEmpty ? "Last saved forecast" : viewModel.offlineCountryName)
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.white.opacity(0.7))
+
+                    HStack(alignment: .center, spacing: 16) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 26, style: .continuous)
+                                .fill(Color.white.opacity(0.12))
+
+                            Image(systemName: theme.symbolName)
+                                .font(.system(size: 62, weight: .bold))
+                                .foregroundStyle(theme.glow)
+                        }
+                        .frame(width: 132, height: 132)
+
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(temperatureText)
+                                .font(.system(size: 64, weight: .black, design: .rounded))
+                                .foregroundStyle(.white)
+
+                            Text(viewModel.offlineWeatherData.currentWeather?.conditionCode ?? "Stored weather snapshot")
+                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .foregroundStyle(Color.white.opacity(0.74))
+                                .lineLimit(2)
+
+                            Text(viewModel.currentDate.isEmpty ? Date.now.formatted(date: .abbreviated, time: .omitted) : viewModel.currentDate)
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundStyle(Color.white.opacity(0.58))
+                        }
                     }
-                    
-                    HStack {
-                        Text(viewModel.offlineCountryName)
-                            .font(.custom("Avenir-Medium", size: 25))
-                            .fontWeight(.bold)
-                            .foregroundColor(Constants.customGrayColor)
-                            .multilineTextAlignment(.center)
-                            .lineLimit(3)
-                        Spacer()
-                    }
-                    
-                    HStack {
-                        Text(viewModel.currentDate)
-                            .font(.custom("Avenir-Medium", size: 20))
-                            .fontWeight(.bold)
-                            .foregroundColor(Constants.customGrayColor)
-                            .multilineTextAlignment(.center)
-                            .lineLimit(3)
-                        Spacer()
-                    }
+
+                    Text("Network unavailable. Showing the last saved location and forecast snapshot.")
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                        .foregroundStyle(Color.white.opacity(0.68))
                 }
-                
+                .padding(24)
+                .background(
+                    RoundedRectangle(cornerRadius: 34, style: .continuous)
+                        .fill(Color.white.opacity(0.10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 34, style: .continuous)
+                                .stroke(Color.white.opacity(0.12), lineWidth: 1)
+                        )
+                )
+                .padding(.horizontal, 18)
+
                 Spacer()
             }
-            .padding(.top, 20)
-            .padding(.bottom, 30)
-            .padding(.horizontal, 15)
-            
-            Image(systemName: viewModel.weatherSymbol)
-                .resizable()
-                .frame(width: 150, height: 120)
-                .foregroundColor(.white)
-            
-            Text("\(viewModel.offlineWeatherData.currentWeather?.temperature.nextUp ?? 0.0, specifier: "%.0f")°C")
-                .font(.custom("Avenir-Medium", size: 40))
-                .fontWeight(.heavy)
-                .foregroundColor(.white)
-            Text(viewModel.offlineWeatherData.currentWeather?.conditionCode ?? "No Conditions data")
-                .font(.custom("Avenir-Medium", size: 20))
-                .fontWeight(.bold)
-                .foregroundColor(.black)
-                .padding(.vertical, 10)
-                .padding(.horizontal, 15)
-                .background(Color(red: 0.96, green: 0.96, blue: 0.96))
-                .cornerRadius(20)
-//            Text("H:\(viewModel.offline.forecastDaily?.days[0].temperatureMax ?? 0.0, specifier: "%.0f")°C - L:\(viewModel.weatherData.forecastDaily?.days[0].temperatureMin ?? 0.0, specifier: "%.0f")°C")
-//                .font(.custom("Avenir-Medium", size: 20))
-//                .fontWeight(.bold)
-//                .foregroundColor(.white)
-            Spacer()
         }
-        .edgesIgnoringSafeArea(.all)
-        .background(Constants.defaultBackground)
     }
 }
