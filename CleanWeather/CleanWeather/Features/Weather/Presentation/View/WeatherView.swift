@@ -41,7 +41,7 @@ struct WeatherView: View {
                 .ignoresSafeArea()
 
             ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: 22) {
+                LazyVStack(spacing: 22) {
                     TemperatureView(viewModel: viewModel)
                     CityDiscoveryHub { preset in
                         viewModel.getWeatherForNewLocation(location: preset.location)
@@ -71,73 +71,78 @@ struct WeatherView: View {
 
 private struct AnimatedWeatherBackdrop: View {
     let theme: WeatherSceneTheme
+    @State private var animateBackdrop = false
 
     var body: some View {
         GeometryReader { proxy in
-            TimelineView(.animation(minimumInterval: 1.0 / 60.0, paused: false)) { timeline in
-                let time = timeline.date.timeIntervalSinceReferenceDate
+            ZStack {
+                LinearGradient(
+                    colors: [theme.skyTop, theme.skyBottom, theme.horizon],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
 
-                ZStack {
-                    LinearGradient(
-                        colors: [theme.skyTop, theme.skyBottom, theme.horizon],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
+                Circle()
+                    .fill(theme.glow.opacity(theme.isStormy ? 0.16 : 0.24))
+                    .frame(width: proxy.size.width * 0.76)
+                    .blur(radius: 72)
+                    .offset(
+                        x: proxy.size.width * (theme.isNight ? 0.24 : -0.14),
+                        y: -proxy.size.height * 0.24
                     )
 
+                ForEach(0..<3, id: \.self) { index in
                     Circle()
-                        .fill(theme.glow.opacity(theme.isStormy ? 0.18 : 0.26))
-                        .frame(width: proxy.size.width * 0.82)
-                        .blur(radius: 80)
-                        .offset(
-                            x: proxy.size.width * (theme.isNight ? 0.28 : -0.18),
-                            y: -proxy.size.height * 0.28
+                        .fill(
+                            LinearGradient(
+                                colors: [
+                                    theme.accent.opacity(0.12),
+                                    theme.secondaryAccent.opacity(0.03)
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
                         )
-
-                    ForEach(0..<3, id: \.self) { index in
-                        Circle()
-                            .fill(
-                                LinearGradient(
-                                    colors: [
-                                        theme.accent.opacity(0.14),
-                                        theme.secondaryAccent.opacity(0.04)
-                                    ],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                            .frame(
-                                width: proxy.size.width * (0.5 + (CGFloat(index) * 0.08)),
-                                height: proxy.size.width * (0.5 + (CGFloat(index) * 0.08))
-                            )
-                            .blur(radius: 55)
-                            .offset(
-                                x: CGFloat(sin(time * 0.12 + Double(index))) * 44,
-                                y: CGFloat(cos(time * 0.15 + Double(index))) * 28
-                            )
-                            .position(
-                                x: proxy.size.width * (index == 1 ? 0.82 : 0.18),
-                                y: proxy.size.height * (index == 2 ? 0.82 : 0.24)
-                            )
-                    }
-
-                    VStack {
-                        Spacer()
-
-                        Rectangle()
-                            .fill(
-                                LinearGradient(
-                                    colors: [
-                                        theme.cityBase.opacity(0.12),
-                                        Color.black.opacity(0.02)
-                                    ],
-                                    startPoint: .top,
-                                    endPoint: .bottom
-                                )
-                            )
-                            .frame(height: proxy.size.height * 0.28)
-                            .blur(radius: 16)
-                    }
+                        .frame(
+                            width: proxy.size.width * (0.46 + (CGFloat(index) * 0.07)),
+                            height: proxy.size.width * (0.46 + (CGFloat(index) * 0.07))
+                        )
+                        .blur(radius: 50)
+                        .offset(
+                            x: animateBackdrop ? CGFloat(index - 1) * 26 : CGFloat(index - 1) * -18,
+                            y: animateBackdrop ? CGFloat(index) * 12 : CGFloat(index) * -8
+                        )
+                        .position(
+                            x: proxy.size.width * (index == 1 ? 0.82 : 0.18),
+                            y: proxy.size.height * (index == 2 ? 0.82 : 0.24)
+                        )
+                        .animation(
+                            .easeInOut(duration: 10 + Double(index * 2))
+                                .repeatForever(autoreverses: true),
+                            value: animateBackdrop
+                        )
                 }
+
+                VStack {
+                    Spacer()
+
+                    Rectangle()
+                        .fill(
+                            LinearGradient(
+                                colors: [
+                                    theme.cityBase.opacity(0.10),
+                                    Color.black.opacity(0.02)
+                                ],
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                        )
+                        .frame(height: proxy.size.height * 0.28)
+                        .blur(radius: 14)
+                }
+            }
+            .onAppear {
+                animateBackdrop = true
             }
         }
     }
@@ -192,7 +197,7 @@ private struct CityDiscoveryRail: View {
                 .foregroundStyle(.white)
 
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
+                LazyHStack(spacing: 12) {
                     ForEach(cities) { city in
                         Button {
                             onSelect(city)

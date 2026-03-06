@@ -59,7 +59,7 @@ struct DailyForecastView: View {
                     )
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 16) {
+                    LazyHStack(spacing: 16) {
                         ForEach(days, id: \.self) { day in
                             DailyForecastCard(day: day)
                         }
@@ -94,67 +94,81 @@ private struct DailyForecastCard: View {
         WeatherSceneTheme(condition: day.conditionCode, daylight: true)
     }
 
+    private var precipitationText: String {
+        "\(Int((day.precipitationChance * 100).rounded()))%"
+    }
+
+    private var rangeFraction: CGFloat {
+        let totalRange = max(1, day.temperatureMax - day.temperatureMin)
+        return max(0.18, min(1, totalRange / 18))
+    }
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            VStack(alignment: .leading, spacing: 6) {
-                Text(dayLabel)
-                    .font(.system(size: 22, weight: .black, design: .rounded))
-                    .foregroundStyle(.white)
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .top, spacing: 12) {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(dayLabel)
+                        .font(.system(size: 20, weight: .black, design: .rounded))
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
 
-                Text(dateLabel)
-                    .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(Color.white.opacity(0.64))
-            }
+                    Text(dateLabel)
+                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.white.opacity(0.62))
+                }
 
-            HStack(alignment: .center, spacing: 10) {
+                Spacer(minLength: 8)
+
                 ZStack {
-                    RoundedRectangle(cornerRadius: 18, style: .continuous)
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
                         .fill(dayTheme.glow.opacity(0.14))
 
                     Image(systemName: dayTheme.symbolName)
-                        .font(.system(size: 28, weight: .bold))
+                        .font(.system(size: 24, weight: .bold))
                         .foregroundStyle(dayTheme.glow)
                 }
-                .frame(width: 62, height: 62)
+                .frame(width: 54, height: 54)
+            }
 
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(day.conditionCode)
-                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(.white)
-                        .lineLimit(2)
+            Text(day.conditionCode)
+                .font(.system(size: 14, weight: .bold, design: .rounded))
+                .foregroundStyle(.white)
+                .lineLimit(2)
+                .frame(height: 36, alignment: .topLeading)
 
-                    Text("UV \(day.maxUvIndex)  •  \(Int((day.precipitationChance * 100).rounded()))% precipitation")
-                        .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(Color.white.opacity(0.62))
-                        .lineLimit(2)
-                }
+            HStack(spacing: 8) {
+                ForecastInfoBadge(title: "UV", value: "\(day.maxUvIndex)", tint: dayTheme.accent)
+                ForecastInfoBadge(title: "Rain", value: precipitationText, tint: dayTheme.secondaryAccent)
+                ForecastInfoBadge(title: "Moon", value: moonLabel, tint: dayTheme.windowGlow)
             }
 
             VStack(alignment: .leading, spacing: 10) {
-                HStack {
-                    Text("High")
-                        .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color.white.opacity(0.60))
-                    Spacer()
-                    Text("\(Int(day.temperatureMax.rounded()))°")
-                        .font(.system(size: 22, weight: .black, design: .rounded))
-                        .foregroundStyle(.white)
-                }
+                HStack(alignment: .firstTextBaseline) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("High")
+                            .font(.system(size: 11, weight: .bold, design: .rounded))
+                            .foregroundStyle(Color.white.opacity(0.56))
 
-                HStack {
-                    Text("Low")
-                        .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color.white.opacity(0.60))
+                        Text("\(Int(day.temperatureMax.rounded()))°")
+                            .font(.system(size: 24, weight: .black, design: .rounded))
+                            .foregroundStyle(.white)
+                    }
+
                     Spacer()
-                    Text("\(Int(day.temperatureMin.rounded()))°")
-                        .font(.system(size: 22, weight: .black, design: .rounded))
-                        .foregroundStyle(Color.white.opacity(0.82))
+
+                    VStack(alignment: .trailing, spacing: 2) {
+                        Text("Low")
+                            .font(.system(size: 11, weight: .bold, design: .rounded))
+                            .foregroundStyle(Color.white.opacity(0.56))
+
+                        Text("\(Int(day.temperatureMin.rounded()))°")
+                            .font(.system(size: 24, weight: .black, design: .rounded))
+                            .foregroundStyle(Color.white.opacity(0.84))
+                    }
                 }
 
                 GeometryReader { proxy in
-                    let totalRange = max(1, day.temperatureMax - day.temperatureMin)
-                    let progress = max(0.08, min(1, totalRange / 25))
-
                     ZStack(alignment: .leading) {
                         Capsule()
                             .fill(Color.white.opacity(0.08))
@@ -168,7 +182,7 @@ private struct DailyForecastCard: View {
                                     endPoint: .trailing
                                 )
                             )
-                            .frame(width: proxy.size.width * progress, height: 10)
+                            .frame(width: proxy.size.width * rangeFraction, height: 10)
                     }
                 }
                 .frame(height: 10)
@@ -177,19 +191,21 @@ private struct DailyForecastCard: View {
             Spacer(minLength: 0)
 
             HStack {
-                Text("Moon")
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundStyle(Color.white.opacity(0.58))
+                Text("Sun")
+                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                    .foregroundStyle(Color.white.opacity(0.54))
 
                 Spacer()
 
-                Text(day.moonPhase.value.capitalized)
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundStyle(dayTheme.windowGlow)
+                Text(sunWindowLabel)
+                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                    .foregroundStyle(Color.white.opacity(0.78))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
             }
         }
         .padding(18)
-        .frame(width: 220, height: 250)
+        .frame(width: 238, height: 232, alignment: .topLeading)
         .background(
             RoundedRectangle(cornerRadius: 26, style: .continuous)
                 .fill(
@@ -224,5 +240,43 @@ private struct DailyForecastCard: View {
         }
 
         return date.formatted(.dateTime.day().month(.abbreviated))
+    }
+
+    private var moonLabel: String {
+        day.moonPhase.value
+            .replacingOccurrences(of: "Moon", with: "")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .capitalized
+    }
+
+    private var sunWindowLabel: String {
+        "\(day.sunrise.formatted(.dateTime.hour().minute())) - \(day.sunset.formatted(.dateTime.hour().minute()))"
+    }
+}
+
+private struct ForecastInfoBadge: View {
+    let title: String
+    let value: String
+    let tint: Color
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(title)
+                .font(.system(size: 10, weight: .bold, design: .rounded))
+                .foregroundStyle(Color.white.opacity(0.54))
+
+            Text(value)
+                .font(.system(size: 12, weight: .black, design: .rounded))
+                .foregroundStyle(tint)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 10)
+        .background(
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .fill(Color.black.opacity(0.12))
+        )
     }
 }
