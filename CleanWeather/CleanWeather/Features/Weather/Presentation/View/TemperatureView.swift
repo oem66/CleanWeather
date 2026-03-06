@@ -246,10 +246,12 @@ private struct WeatherHeroVisual: View {
     let citySeed: Int
     let cloudCover: Double
     let temperature: Double
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var isVisible = false
 
     var body: some View {
         GeometryReader { proxy in
-            TimelineView(.animation(minimumInterval: 1.0 / 120.0, paused: false)) { timeline in
+            TimelineView(.animation(minimumInterval: 1.0 / 60.0, paused: scenePhase != .active || !isVisible)) { timeline in
                 let time = timeline.date.timeIntervalSinceReferenceDate
                 let flash = theme.isStormy ? lightningOpacity(at: time, seed: citySeed) : 0
 
@@ -292,8 +294,13 @@ private struct WeatherHeroVisual: View {
                             .fill(Color.white.opacity(flash * 0.22))
                     }
                 }
-                .drawingGroup()
             }
+        }
+        .onAppear {
+            isVisible = true
+        }
+        .onDisappear {
+            isVisible = false
         }
     }
 
@@ -354,7 +361,7 @@ private struct NightSkyField: View {
 
     var body: some View {
         GeometryReader { proxy in
-            ForEach(0..<24, id: \.self) { index in
+            ForEach(0..<16, id: \.self) { index in
                 Circle()
                     .fill(Color.white.opacity(0.55 + (seededUnit(seed: seed, index: index) * 0.35)))
                     .frame(
@@ -468,7 +475,7 @@ private struct WeatherParticleLayer: View {
     }
 
     private func drawRain(in context: inout GraphicsContext, size: CGSize) {
-        for index in 0..<74 {
+        for index in 0..<44 {
             let x = size.width * seededUnit(seed: seed, index: index + 200)
             let speed = 160 + (seededUnit(seed: seed, index: index + 240) * 170)
             let originY = size.height * seededUnit(seed: seed, index: index + 280)
@@ -488,7 +495,7 @@ private struct WeatherParticleLayer: View {
     }
 
     private func drawSnow(in context: inout GraphicsContext, size: CGSize) {
-        for index in 0..<46 {
+        for index in 0..<28 {
             let progress = seededUnit(seed: seed, index: index + 400)
             let baseX = size.width * progress
             let amplitude = 10 + seededUnit(seed: seed, index: index + 450) * 12
