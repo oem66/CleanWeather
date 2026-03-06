@@ -43,6 +43,9 @@ struct WeatherView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 22) {
                     TemperatureView(viewModel: viewModel)
+                    CityDiscoveryHub { preset in
+                        viewModel.getWeatherForNewLocation(location: preset.location)
+                    }
                     TemperatureChartView(viewModel: viewModel)
                     DailyForecastView(viewModel: viewModel)
                     StatisticsView(viewModel: viewModel)
@@ -71,7 +74,7 @@ private struct AnimatedWeatherBackdrop: View {
 
     var body: some View {
         GeometryReader { proxy in
-            TimelineView(.animation(minimumInterval: 1.0 / 24.0, paused: false)) { timeline in
+            TimelineView(.animation(minimumInterval: 1.0 / 60.0, paused: false)) { timeline in
                 let time = timeline.date.timeIntervalSinceReferenceDate
 
                 ZStack {
@@ -135,6 +138,91 @@ private struct AnimatedWeatherBackdrop: View {
                             .blur(radius: 16)
                     }
                 }
+            }
+        }
+    }
+}
+
+private struct CityDiscoveryHub: View {
+    let onSelect: (CityPreset) -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 18) {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("City Search Deck")
+                    .font(.system(size: 26, weight: .black, design: .rounded))
+                    .foregroundStyle(.white)
+
+                Text("Jump between large urban systems and smaller local climates without leaving the weather tab.")
+                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                    .foregroundStyle(Color.white.opacity(0.68))
+            }
+
+            CityDiscoveryRail(title: "Large Cities", cities: CityPreset.majorCities, onSelect: onSelect)
+            CityDiscoveryRail(title: "Smaller Cities", cities: CityPreset.smallerCities, onSelect: onSelect)
+        }
+        .padding(20)
+        .background(
+            RoundedRectangle(cornerRadius: 30, style: .continuous)
+                .fill(
+                    LinearGradient(
+                        colors: [Color.white.opacity(0.12), Color.white.opacity(0.05)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 30, style: .continuous)
+                        .stroke(Color.white.opacity(0.10), lineWidth: 1)
+                )
+        )
+        .shadow(color: Color.black.opacity(0.18), radius: 20, x: 0, y: 16)
+    }
+}
+
+private struct CityDiscoveryRail: View {
+    let title: String
+    let cities: [CityPreset]
+    let onSelect: (CityPreset) -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(title)
+                .font(.system(size: 18, weight: .black, design: .rounded))
+                .foregroundStyle(.white)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(cities) { city in
+                        Button {
+                            onSelect(city)
+                        } label: {
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(city.name)
+                                    .font(.system(size: 16, weight: .black, design: .rounded))
+                                    .foregroundStyle(.white)
+                                    .lineLimit(1)
+
+                                Text(city.country)
+                                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                                    .foregroundStyle(Color.white.opacity(0.62))
+                                    .lineLimit(2)
+                            }
+                            .padding(14)
+                            .frame(width: 150, alignment: .leading)
+                            .background(
+                                RoundedRectangle(cornerRadius: 22, style: .continuous)
+                                    .fill(Color.black.opacity(0.12))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 22, style: .continuous)
+                                            .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                                    )
+                            )
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.horizontal, 1)
             }
         }
     }

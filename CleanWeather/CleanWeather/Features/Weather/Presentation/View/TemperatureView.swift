@@ -249,7 +249,7 @@ private struct WeatherHeroVisual: View {
 
     var body: some View {
         GeometryReader { proxy in
-            TimelineView(.animation(minimumInterval: 1.0 / 24.0, paused: false)) { timeline in
+            TimelineView(.animation(minimumInterval: 1.0 / 120.0, paused: false)) { timeline in
                 let time = timeline.date.timeIntervalSinceReferenceDate
                 let flash = theme.isStormy ? lightningOpacity(at: time, seed: citySeed) : 0
 
@@ -456,7 +456,7 @@ private struct WeatherParticleLayer: View {
     let time: TimeInterval
 
     var body: some View {
-        Canvas { context, size in
+        Canvas(opaque: false, colorMode: .linear, rendersAsynchronously: true) { context, size in
             if theme.hasRain {
                 drawRain(in: &context, size: size)
             }
