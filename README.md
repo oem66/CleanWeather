@@ -129,6 +129,9 @@ Display the Apple Weather trademark clearly
 Include legal attribution links to data sources
 Link weather alerts to Apple's weather alert details page
 
+👷‍♂️ Features to build
+Integrate multiple APIs for Weather data like meteomatics
+
 🤝 Contributing
 
 Fork the repository
