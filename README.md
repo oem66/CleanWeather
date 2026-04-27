@@ -132,7 +132,7 @@ Link weather alerts to Apple's weather alert details page
 👷‍♂️ Features to build
 1. Integrate multiple APIs for Weather data like meteomatics
 2. Add weather analytics
-
+3. Add custom maps to show wind, rain/snow and heat 
 
 🤝 Contributing
 
