@@ -130,7 +130,9 @@ Include legal attribution links to data sources
 Link weather alerts to Apple's weather alert details page
 
 👷‍♂️ Features to build
-Integrate multiple APIs for Weather data like meteomatics
+1. Integrate multiple APIs for Weather data like meteomatics
+2. Add weather analytics
+
 
 🤝 Contributing
 
