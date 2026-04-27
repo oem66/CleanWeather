@@ -30,6 +30,7 @@ Data Layer
 WeatherKit Integration: Apple's native weather service
 CoreLocation: Location services and geocoding
 Repository Implementations: Concrete data access implementations
+Persistency using CoreData
 
 🔧 Requirements
 
